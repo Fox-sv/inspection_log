@@ -2,8 +2,9 @@ from django.contrib import admin
 from . import models
 # Register your models here.
 
-#admin.site.register(models.Inspection_log)
+# admin.site.register(models.Inspection_log)
 admin.site.register(models.Substation)
+
 
 @admin.register(models.Inspection_log)
 class LogAdmin(admin.ModelAdmin):
