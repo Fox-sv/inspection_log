@@ -10,4 +10,4 @@ admin.site.register(models.Substation)
 class LogAdmin(admin.ModelAdmin):
     list_display = ('date_record', 'substation_name', 'job_type', 'user_name_id', 'note')
     list_filter = ('substation_name', 'user_name_id')
-    search_fields = ('job_type', 'date_record',)
+    # search_fields = ('job_type', 'date_record',)
