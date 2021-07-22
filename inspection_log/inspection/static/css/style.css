@@ -7472,3 +7472,25 @@ h6 {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.warning {
+  width: 40px;
+  height: 40px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #ff2e2e;
+  font-size: 14px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  background: #EFFDF5;
+  margin-right: 15px;
+}
+
+.warning:hover {
+  background: #ff2e2e;
+  color: #fff;
+}
+
+

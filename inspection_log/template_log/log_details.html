@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
-{% block title %} КАКАЯ-ТО ЗАПИСЬ {% endblock %}
+{% load static %}
+{% block title %} {{ log.job_type }} {% endblock %}
 {% block body %}
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
@@ -15,7 +16,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text">
-                        <h3>Software Engineer</h3>
+                        <h3>{{ log.substation_name }}</h3>
                     </div>
                 </div>
             </div>
@@ -31,59 +32,60 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="thumb">
-                                    <img src="img/svg_icon/1.svg" alt="">
+                                    <img src="{% static 'img/svg_icon/1.svg' %}" alt="">
                                 </div>
                                 <div class="jobs_conetent">
-                                    <a href="#"><h4>Software Engineer</h4></a>
+                                    <a href="#"><h4>{{ log.job_type }}</h4></a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
-                                            <p> <i class="fa fa-user"></i> California, USA</p>
+                                            <p> <i class="fa fa-user"></i> {{ log.user_name_id }}</p>
                                         </div>
                                         <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i> Part-time</p>
+                                            <p> <i class="fa fa-clock-o"></i> {{ log.date_record }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
+                                    {% if log.note %}
+                                    <a class="warning" href="#s" onclick="return false"> <i class="heart_mark fa fa-exclamation-triangle"></i> </a>
+                                    {% else %}
+                                    <a class="heart_mark" href="#" onclick="return false"> <i class="fa fa-check"></i> </a>
+                                    {% endif %}
+                                    <a href="{% url 'inspection:update_log' log.id %}" class="boxed-btn3">Изменить</a>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="descript_wrap white-bg">
                         <div class="single_wrap">
-                            <h4>Job description</h4>
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
-                            <p>Variations of passages of lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
+                            <h4>Описание</h4>
+                            <p>{{ log.record }}</p>
+                            <p></p>
                         </div>
                         <div class="single_wrap">
-                            <h4>Responsibility</h4>
-                            <ul>
-                                <li>The applicants should have experience in the following areas.
-                                </li>
-                                <li>Have sound knowledge of commercial activities.</li>
-                                <li>Leadership, analytical, and problem-solving abilities.</li>
-                                <li>Should have vast knowledge in IAS/ IFRS, Company Act, Income Tax, VAT.</li>
-                            </ul>
+                            <h4>Фото</h4>
+                            {% if log.substation_img %}
+
+                            <p>{{ log.substation_img }}</p>
+                            {% else %}
+                            <p> - </p>
+                            {% endif %}
+<!--                            <ul>-->
+<!--                                <li>The applicants should have experience in the following areas.-->
+<!--                                </li>-->
+<!--                                <li>Have sound knowledge of commercial activities.</li>-->
+<!--                                <li>Leadership, analytical, and problem-solving abilities.</li>-->
+<!--                                <li>Should have vast knowledge in IAS/ IFRS, Company Act, Income Tax, VAT.</li>-->
+<!--                            </ul>-->
                         </div>
-                        <div class="single_wrap">
-                            <h4>Qualifications</h4>
-                            <ul>
-                                <li>The applicants should have experience in the following areas.
-                                </li>
-                                <li>Have sound knowledge of commercial activities.</li>
-                                <li>Leadership, analytical, and problem-solving abilities.</li>
-                                <li>Should have vast knowledge in IAS/ IFRS, Company Act, Income Tax, VAT.</li>
-                            </ul>
-                        </div>
-                        <div class="single_wrap">
-                            <h4>Benefits</h4>
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
-                        </div>
+
+
+
+                        <a href="{% url 'inspection:delete_log' log.id %}" class="boxed-btn3">Удалить</a>
                     </div>
-                    
                 </div>
 
             </div>
