@@ -42,10 +42,16 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                <div class="input_field">
+                                <div class="single_field">
+                                            <select class="wide">
+                                                <option data-display="Производитель">Производитель</option>
+                                                {% for substation in form.substation_name %}
+                                                <option value="1">{{ substation }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
 <!--                                 <input type="text" placeholder="Email">-->
-                                        {{ form.substation_name }}
-                                </div>
+
                                 </div>
 
                                 <div class="col-md-12">
@@ -63,32 +69,37 @@
                                         </div>
                                         <div class="custom-file">
 
-<!--                                       <input type="file" value='{{ form.substation_img }}' class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" >-->
+                                       <input type="file" class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" >
 
-<!--                                        <label class="custom-file-label" for="inputGroupFile03">Загрузить фото</label>-->
-                                            {{ form.substation_img }}
-                                        <img src="{{ form.cover.url}}" alt="connect" style="max-height:300px">
+                                        <label class="custom-file-label" for="inputGroupFile03">Загрузить фото</label>
+     {{ form.substation_img }}
+
 
                                         </div>
                                       </div>
                                 </div>
+
                                 <div class="col-md-12">
                                     <div class="input_field">
-                                        {{ form.date_record }}
-<!--                                        <textarea name="#" id="" cols="30" rows="10" placeholder="Описание"></textarea>-->
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="input_field">
-                                        <p>as</p>
-                                        {{ form.note }}
+<!--                                        <input id="datepicker1" type='text' class='datepicker' value=""/>-->
+
+                                            {{ form.date_record }}
 
 <!--                                        <textarea name="#" id="" cols="30" rows="10" placeholder="Описание"></textarea>-->
                                     </div>
                                 </div>
+
+                                <div class="col-md-12">
+                                    <div class="switch-wrap d-flex justify-content-between">
+								        <p>Обратить внимание перед следующей поездкой</p>
+                                        <div class="check-warning">
+                                            {{ form.note }}
+                                        </div>
+							        </div>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="submit_btn">
-                                        <button class="boxed-btn3 w-100" type="submit">Apply Now</button>
+                                        <button class="boxed-btn3 w-100" type="submit">Сохранить</button>
                                     </div>
                                 </div>
                             </div>
@@ -237,5 +248,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
     <script src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.datepicker').datepicker({
+                format : 'dd-mm-yyyy'
+            });
+        });
+    </script>
 {% endblock %}
 

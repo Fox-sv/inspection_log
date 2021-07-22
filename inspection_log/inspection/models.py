@@ -13,7 +13,7 @@ class Substation(models.Model):
 
 
 class Inspection_log(models.Model):
-    date_record = models.DateField(verbose_name='Date of Record', default=datetime.date.today())
+    date_record = models.DateField(verbose_name='Date of Record')
     job_type = models.CharField(max_length=100)
     record = models.TextField(max_length=200, verbose_name='Record', blank=True)
     user_name_id = models.ForeignKey(User, verbose_name='Name', related_name='log_to_user', null=True, blank=True, on_delete=models.SET_NULL)

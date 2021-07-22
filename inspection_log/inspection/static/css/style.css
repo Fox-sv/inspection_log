@@ -7493,4 +7493,10 @@ h6 {
   color: #fff;
 }
 
+.check-warning {
+  width: 20px;
+}
 
+input[type=checkbox] {
+    transform: scale(1.5);
+}

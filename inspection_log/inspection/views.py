@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from . import models, forms
+import datetime
 
 
 def home(request):
@@ -12,7 +13,7 @@ def inspection_log(request):
     Журнал осмотра
     '''
     log = models.Inspection_log.objects.all()
-    return render(request, 'inspection_log.html', {'logs': log})
+    return render(request, 'inspection_log.html', {'logs': log[::-1]})
 
 
 def log_form(request):
@@ -20,17 +21,20 @@ def log_form(request):
     Форма здля записи в журнал
     '''
     if request.method == 'POST':
-        form = forms.LogForms(request.POST, request.FILES)
-        img_obj = form.instance
+        form = forms.LogForms(request.POST)
+
         if form.is_valid():
             new_log = form.save(commit=False)
             new_log.user_name_id = request.user          # сохранение в журнале залогиниившегося юзера
             new_log.responsible_user_id =request.user
+            print(form.cleaned_data['date_record'])
+            # new_log.date_record = datetime.date.today().strftime("%Y-%m-%d")
             new_log.save()
-            img_obj = form.instance
+
             return redirect('inspection:start_page')
         else:
-            return render(request, 'log_form.html', {'form': form, 'img_obj': img_obj})
+            print(form)
+            return render(request, 'log_form.html', {'form': form, })
     else:
         form = forms.LogForms()
         return render(request, 'log_form.html', {'form': form})
@@ -59,3 +63,4 @@ def delete_log(request, log_id: int):
     logs = models.Inspection_log.objects.all()
     #return render(request, 'inspection_log.html', {'logs': logs, })
     return redirect('inspection:inspection_log')
+
