@@ -72,17 +72,19 @@
                         <div class="popup-gallery">
                             <div class="section-top-border">
                                 <div class="row gallery-item">
+                                    {% for img in image_list%}
                                     <div class="col-md-4">
-                                        <a href="/static/img/elements/g1.jpg" class="img-pop-up">
-                                            <div class="single-gallery-image" style="background: url(/static/img/elements/g1.jpg);"></div>
+                                        <a href="/static/downloadimages/{{ log_id }}/{{ img }}" class="img-pop-up">
+                                            <div class="single-gallery-image" style="background: url(/static/downloadimages/{{ log_id }}/{{ img }});"></div>
                                         </a>
                                     </div>
-                                    <div class="col-md-4">
+                                    {% endfor %}
+                                    <!-- <div class="col-md-4">
                                         <a href="/static/img/elements/g2.jpg" class="img-pop-up">
                                             <div class="single-gallery-image" style="background: url(/static/img/elements/g2.jpg);"></div>
                                         </a>
-                                    </div>
-                                    <div class="col-md-4">
+                                    </div> -->
+                                   <!--  <div class="col-md-4">
                                         <a href="/static/img/elements/g3.jpg" class="img-pop-up">
                                             <div class="single-gallery-image" style="background: url(/static/img/elements/g3.jpg);"></div>
                                         </a>
@@ -116,7 +118,7 @@
                                         <a href="/static/downloadimages/{{ log.substation_img }}" class="img-pop-up">
                                             <div class="single-gallery-image" style="background: url(/static/downloadimages/{{ log.substation_img }});"></div>
                                         </a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
