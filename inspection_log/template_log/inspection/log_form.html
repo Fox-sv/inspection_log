@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %} Запись в журнал {% endblock %}
 {% block body %}
+
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
@@ -63,10 +64,8 @@
                                           </button>
                                         </div>
                                         <div class="custom-file">
-
-<!--                                        {{ form.substation_img }}-->
-                                        <input type="file" class="custom-file-input" id="file-input" aria-describedby="inputGroupFileAddon03" multiple="multiple" name="myFile">
-                                        <label class="custom-file-label" for="file-input" >Загрузить фото</label>
+                                            <input type="file" class="custom-file-input" id="file-input" aria-describedby="inputGroupFileAddon03" multiple="multiple" name="myFile">
+                                            <label class="custom-file-label" for="file-input" >Загрузить фото</label>
 
 
                                         </div>
@@ -75,11 +74,7 @@
 
                                 <div class="col-md-12">
                                     <div class="input_field">
-<!--                                        <input id="datepicker1" type='text' class='datepicker' value=""/>-->
-
-                                            {{ form.date_record }}
-
-<!--                                        <textarea name="#" id="" cols="30" rows="10" placeholder="Описание"></textarea>-->
+                                        {{ form.date_record }}
                                     </div>
                                 </div>
 
@@ -250,7 +245,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         });
 
     </script>
+<script>
+    $('.custom-file-inpu').change(function() {
+    if ($(this).val() != '') $(this).prev().text('Выбрано файлов: ' + $(this)[0].files.length);
+    else $(this).prev().text('Выберите файлы');
+});
 
+</script>
 
 {% endblock %}
 
