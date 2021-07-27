@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'inspection/index.html' %}
 {% load static %}
 {% block title %} {{ log.job_type }} {% endblock %}
 {% block body %}
@@ -67,12 +67,60 @@
                         </div>
                         <div class="single_wrap">
                             <h4>Фото</h4>
-                            {% if log.substation_img %}
 
-                            <p>{{ log.substation_img }}</p>
-                            {% else %}
-                            <p> - </p>
-                            {% endif %}
+
+                        <div class="popup-gallery">
+                            <div class="section-top-border">
+                                <div class="row gallery-item">
+                                    <div class="col-md-4">
+                                        <a href="/static/img/elements/g1.jpg" class="img-pop-up">
+                                            <div class="single-gallery-image" style="background: url(/static/img/elements/g1.jpg);"></div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href="/static/img/elements/g2.jpg" class="img-pop-up">
+                                            <div class="single-gallery-image" style="background: url(/static/img/elements/g2.jpg);"></div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href="/static/img/elements/g3.jpg" class="img-pop-up">
+                                            <div class="single-gallery-image" style="background: url(/static/img/elements/g3.jpg);"></div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="/static/img/elements/g4.jpg" class="img-pop-up">
+                                            <div class="single-gallery-image" style="background: url(/static/img/elements/g4.jpg);"></div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="/static/img/elements/g5.jpg" class="img-pop-up">
+                                            <div class="single-gallery-image" style="background: url(/static/img/elements/g5.jpg);"></div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href="/static/img/elements/g6.jpg" class="img-pop-up">
+                                            <div class="single-gallery-image" style="background: url(/static/img/elements/g6.jpg);"></div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href="/static/img/elements/g7.jpg" class="img-pop-up">
+                                            <div class="single-gallery-image" style="background: url(/static/img/elements/g7.jpg);"></div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href="/static/img/elements/g8.jpg" class="img-pop-up">
+                                            <div class="single-gallery-image" style="background: url(/static/img/elements/g8.jpg);"></div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href="/static/downloadimages/{{ log.substation_img }}" class="img-pop-up">
+                                            <div class="single-gallery-image" style="background: url(/static/downloadimages/{{ log.substation_img }});"></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 <!--                            <ul>-->
 <!--                                <li>The applicants should have experience in the following areas.-->
 <!--                                </li>-->
@@ -198,34 +246,57 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!-- link that opens popup -->
     <!-- JS here -->
-    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
-    <script src="js/ajax-form.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="js/scrollIt.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/nice-select.min.js"></script>
-    <script src="js/jquery.slicknav.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/gijgo.min.js"></script>
+    <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/ajax-form.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/scrollIt.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/gijgo.min.js' %}"></script>
 
 
 
     <!--contact js-->
-    <script src="js/contact.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.form.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/mail-script.js"></script>
+    <script src="{% static 'js/contact.js"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.js"></script>
+    <script src="{% static 'js/jquery.form.js"></script>
+    <script src="{% static 'js/jquery.validate.min.js"></script>
+    <script src="{% static 'js/mail-script.js"></script>
 
 
-    <script src="js/main.js"></script>
+    <script src="{% static 'js/main.js"></script>
+<!-- magnific-popup галерея js -->
+    <script>
+        $(document).ready(function() {
+            $('.popup-gallery').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                tLoading: 'Loading image #%curr%...',
+                mainClass: 'mfp-img-mobile',
+                gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+                },
+                image: {
+                    tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                    titleSrc: function(item) {
+                        return item.el.attr('title');
+                    }
+                }
+            });
+        });
+
+    </script>
 {% endblock %}

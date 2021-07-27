@@ -17,9 +17,10 @@ class Inspection_log(models.Model):
     job_type = models.CharField(max_length=100)
     record = models.TextField(max_length=200, verbose_name='Record', blank=True)
     user_name_id = models.ForeignKey(User, verbose_name='Name', related_name='log_to_user', null=True, blank=True, on_delete=models.SET_NULL)
-    substation_name = models.ForeignKey(Substation, verbose_name='substation', related_name='log_to_substation', null=True, on_delete=models.SET_NULL)
+    # substation_name = models.ForeignKey(Substation, verbose_name='substation', related_name='log_to_substation', null=True, on_delete=models.SET_NULL)
+    substation_name = models.CharField(max_length=100, verbose_name='substation')
     note = models.BooleanField(default=False)
-    substation_img = models.FileField(upload_to='%Y%m%d/', null=True, blank=True)
+    substation_img = models.ImageField(upload_to='%Y%m%d/', null=True, blank=True)
 
     def add_photo(self, photo_file):
         with open(photo_file) as f:

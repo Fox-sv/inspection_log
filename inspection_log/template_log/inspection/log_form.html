@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'inspection/index.html' %}
 {% load static %}
 {% block title %} Запись в журнал {% endblock %}
 {% block body %}
@@ -23,7 +23,7 @@
         </div>
     </div>
     <!--/ bradcam_area  -->
-<form action="." method="POST">
+<form action="." method="POST" enctype="multipart/form-data">
 {% csrf_token %}
     <div class="job_details_area">
         <div class="container">
@@ -42,14 +42,9 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                <div class="single_field">
-                                            <select class="wide">
-                                                <option data-display="Производитель">Производитель</option>
-                                                {% for substation in form.substation_name %}
-                                                <option value="1">{{ substation }}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </div>
+                                    <div class="input_field">
+                                        {{ form.substation_name }}
+                                    </div>
 <!--                                 <input type="text" placeholder="Email">-->
 
                                 </div>
@@ -69,10 +64,9 @@
                                         </div>
                                         <div class="custom-file">
 
-                                       <input type="file" class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" >
-
-                                        <label class="custom-file-label" for="inputGroupFile03">Загрузить фото</label>
-     {{ form.substation_img }}
+<!--                                        {{ form.substation_img }}-->
+                                        <input type="file" class="custom-file-input" id="file-input" aria-describedby="inputGroupFileAddon03" multiple="multiple" name="myFile">
+                                        <label class="custom-file-label" for="file-input" >Загрузить фото</label>
 
 
                                         </div>
@@ -254,6 +248,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 format : 'dd-mm-yyyy'
             });
         });
+
     </script>
+
+
 {% endblock %}
 
