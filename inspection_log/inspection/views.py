@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, response
 from . import models, forms
 import datetime, os, json
 
@@ -22,13 +22,16 @@ def log_form(request):
     '''
     if request.method == 'POST':
         form = forms.LogForms(request.POST, request.FILES)
-        id_log = models.Inspection_log.objects.all().last().id + 1              # id для название папки новой формы
         images_name = []                                                        # список для названия фото
-        img_path = f"inspection/static/downloadimages/{id_log}"
         if form.is_valid():
+            new_log = form.save(commit=False)
+            new_log.user_name_id = request.user
+            new_log.responsible_user_id =request.user
+            new_log.save()
+            id_log = new_log.id
+            img_path = f"inspection/static/downloadimages/{id_log}"
             if not os.path.isdir(img_path):                                     # если папки нету, создаёт новую
                 os.mkdir(img_path)                                              # с именем id записи
-
             for i in request.FILES.getlist('myFile'): # итерация по добавленным файлам через input и получение байт кода
                 images_name.append(str(i.name))                                 # имена фото
                 with open(f"{img_path}/{i.name}", 'wb+') as destination:
@@ -44,10 +47,6 @@ def log_form(request):
                     new_dict = {**image_dict, **img_dict}                          # объединение словарей
                     with open("inspection/static/json/images_name.json", 'w') as f:
                         json.dump(new_dict, f)
-            new_log = form.save(commit=False)
-            new_log.user_name_id = request.user
-            new_log.responsible_user_id =request.user
-            new_log.save()
             return redirect('inspection:inspection_log')
         else:
             return render(request, 'inspection/log_form.html', {'form': form})
@@ -58,14 +57,18 @@ def log_form(request):
 
 def log_details(request, log_id: int):
     log = models.Inspection_log.objects.get(id=log_id)
+    time_ = datetime.datetime.today()
+    print(time_.time())
     with open("inspection/static/json/images_name.json", 'r') as f:
         image_dict = json.load(f)
-    image_list = image_dict[f'{log.id}']
-
+    try:
+        image_list = image_dict[f'{log.id}']
+    except KeyError:
+        image_list = []
     if not log:
         raise Exception('No such log')
     else:
-        return render(request, 'inspection/log_details.html', {'log': log, 'log_id': log_id, 'image_list': image_list})
+        return render(request, 'inspection/log_details.html', {'log': log, 'log_id': log_id, 'image_list': image_list, 'time1': time_.time()})
 
 
 def update_log(request, log_id: int):
@@ -118,8 +121,7 @@ def delete_img(request, log_id: int, name_img: str):
         new_dict[f"{log_id}"] = images_list
         with open("inspection/static/json/images_name.json", 'w') as file:
             json.dump(new_dict, file)
-    #return render(request, 'inspection/inspection_log.html', {})
-    return redirect('inspection:inspection_log')
+    return redirect('inspection:log_details', log.id)
 
 
 def substations_all(request):

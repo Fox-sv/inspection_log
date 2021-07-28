@@ -11,6 +11,7 @@
     <!-- header-end -->
 
     <!-- bradcam_area  -->
+
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
             <div class="row">
@@ -24,8 +25,10 @@
     </div>
     <!--/ bradcam_area  -->
 
-    <div class="job_details_area">
-        <div class="container">
+    <div  class="job_details_area">
+        <div id="resul">
+            <p>{{time1}}</p>
+            <div  class="container">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="job_details_header">
@@ -65,13 +68,13 @@
                             <p>{{ log.record }}</p>
                             <p></p>
                         </div>
-                        <div class="single_wrap">
+                        <div class="single_wrap" >
                             <div class="popup-gallery">
                                 <div class="section-top-border">
                                     <div class="row gallery-item">
                                         {% for img in image_list%}
                                         <div class="col-md-4">
-                                            <a href="/static/downloadimages/{{ log_id }}/{{ img }}" class="img-pop-up">
+                                            <a href="/static/downloadimages/{{ log_id }}/{{ img }}" class="img-pop-up del-img">
                                                 <div class="single-gallery-image" style="background: url(/static/downloadimages/{{ log_id }}/{{ img }})"></div>
                                             </a>
                                             <a href="{% url 'inspection:delete_img' log.id img %}">Удалить</a>
@@ -88,7 +91,11 @@
 
             </div>
         </div>
+        </div>
     </div>
+
+
+
 
     <!-- footer start -->
     <footer class="footer">
@@ -177,6 +184,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="copy-right_text wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".3s">
             <div class="container">
                 <div class="footer_border"></div>
@@ -193,6 +202,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!--/ footer end  -->
+
 
     <!-- link that opens popup -->
     <!-- JS here -->
@@ -218,19 +228,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
     <!--contact js-->
-    <script src="{% static 'js/contact.js"></script>
-    <script src="{% static 'js/jquery.ajaxchimp.min.js"></script>
-    <script src="{% static 'js/jquery.form.js"></script>
-    <script src="{% static 'js/jquery.validate.min.js"></script>
-    <script src="{% static 'js/mail-script.js"></script>
+    <script src="{% static 'js/contact.jss' %}"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.jss' %}"></script>
+    <script src="{% static 'js/jquery.form.jss' %}"></script>
+    <script src="{% static 'js/jquery.validate.min.jss' %}"></script>
+    <script src="{% static 'js/mail-script.js' %}"></script>
+    <script src="{% static 'js/my-update.js' %}"></script>
 
 
-    <script src="{% static 'js/main.js"></script>
+
+
 <!-- magnific-popup галерея js -->
     <script>
         $(document).ready(function() {
             $('.popup-gallery').magnificPopup({
-                delegate: 'a',
+                delegate: '.del-img',
                 type: 'image',
                 tLoading: 'Loading image #%curr%...',
                 mainClass: 'mfp-img-mobile',
@@ -249,4 +261,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         });
 
     </script>
+
+<script>
+$(document).ready(function () {
+var append_increment = 0;
+setInterval(function() {
+    $.ajax({
+        type: "GET",
+        url: "{% url 'inspection:log_details' log.id %}",
+        data: {'append_increment': append_increment}
+    })
+    .done(function(response) {
+        $('#resul').load(' #resul');
+        append_increment += 1;
+
+    });
+}, 1000)
+})
+</script>
+
 {% endblock %}
