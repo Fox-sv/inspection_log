@@ -12,5 +12,5 @@ urlpatterns = [
     path('log_details/<int:log_id>/', views.log_details, name='log_details'),
     path('update/<int:log_id>/', views.update_log, name='update_log'),
     path('delete/<int:log_id>/', views.delete_log, name='delete_log'),
-
+    path('delete/<int:log_id>/<str:name_img>/', views.delete_img, name='delete_img'),
 ]

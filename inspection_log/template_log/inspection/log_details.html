@@ -66,34 +66,22 @@
                             <p></p>
                         </div>
                         <div class="single_wrap">
-                            <h4>Фото</h4>
-
-
-                        <div class="popup-gallery">
-                            <div class="section-top-border">
-                                <div class="row gallery-item">
-                                    {% for img in image_list%}
-                                    <div class="col-md-4">
-                                        <a href="/static/downloadimages/{{ log_id }}/{{ img }}" class="img-pop-up">
-                                            <div class="single-gallery-image" style="background: url(/static/downloadimages/{{ log_id }}/{{ img }})"></div>
-                                        </a>
+                            <div class="popup-gallery">
+                                <div class="section-top-border">
+                                    <div class="row gallery-item">
+                                        {% for img in image_list%}
+                                        <div class="col-md-4">
+                                            <a href="/static/downloadimages/{{ log_id }}/{{ img }}" class="img-pop-up">
+                                                <div class="single-gallery-image" style="background: url(/static/downloadimages/{{ log_id }}/{{ img }})"></div>
+                                            </a>
+                                            <a href="{% url 'inspection:delete_img' log.id img %}">Удалить</a>
+                                        </div>
+                                        {% endfor %}
                                     </div>
-                                    {% endfor %}
+                                    
                                 </div>
                             </div>
                         </div>
-
-<!--                            <ul>-->
-<!--                                <li>The applicants should have experience in the following areas.-->
-<!--                                </li>-->
-<!--                                <li>Have sound knowledge of commercial activities.</li>-->
-<!--                                <li>Leadership, analytical, and problem-solving abilities.</li>-->
-<!--                                <li>Should have vast knowledge in IAS/ IFRS, Company Act, Income Tax, VAT.</li>-->
-<!--                            </ul>-->
-                        </div>
-
-
-
                         <a href="{% url 'inspection:delete_log' log.id %}" class="boxed-btn3">Удалить</a>
                     </div>
                 </div>

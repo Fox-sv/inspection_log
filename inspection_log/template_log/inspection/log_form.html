@@ -46,15 +46,10 @@
                                     <div class="input_field">
                                         {{ form.substation_name }}
                                     </div>
-<!--                                 <input type="text" placeholder="Email">-->
-
                                 </div>
-
                                 <div class="col-md-12">
                                     <div class="input_field">
-                                        {{ form.record }}
-<!--                                        <input type="text" placeholder="Наименование работы">-->
-
+                                        {{ form.record }}                                 
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -64,10 +59,8 @@
                                           </button>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="file-input" aria-describedby="inputGroupFileAddon03" multiple="multiple" name="myFile">
-                                            <label class="custom-file-label" for="file-input" >Загрузить фото</label>
-
-
+                                            <input type="file" class="custom-file-input" id="customFile" aria-describedby="inputGroupFileAddon03" multiple="multiple" name="myFile">
+                                            <label class="custom-file-label" for="customFile" >Загрузить фото</label>
                                         </div>
                                       </div>
                                 </div>
@@ -245,13 +238,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         });
 
     </script>
-<script>
-    $('.custom-file-inpu').change(function() {
-    if ($(this).val() != '') $(this).prev().text('Выбрано файлов: ' + $(this)[0].files.length);
-    else $(this).prev().text('Выберите файлы');
-});
 
-</script>
+    <script>
+        $(".custom-file-input").on("change", function() {
+            var myFile = $(this).val().split("\\").pop();
+            var numFiles = $(this).get(0).files.length
+            if (numFiles == 1) {
+                $(this).siblings(".custom-file-label").addClass("selected").html(myFile);
+            }
+            else {
+                $(this).siblings(".custom-file-label").addClass("selected").html('Число файлов: ' + numFiles);
+            }
+        });
+    </script>
+
 
 {% endblock %}
 

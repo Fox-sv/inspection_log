@@ -70,8 +70,25 @@ def log_details(request, log_id: int):
 
 def update_log(request, log_id: int):
     log = models.Inspection_log.objects.get(id=log_id)
+    img_path = f"inspection/static/downloadimages/{log_id}"
     form = forms.LogForms(request.POST or None, request.FILES or None, instance=log)
     if form.is_valid():
+        with open("inspection/static/json/images_name.json", 'r') as f:
+                images_dict = json.load(f)
+        try:
+            flag = True
+            images_name = images_dict[f'{log_id}'] 
+        except KeyError:
+            flag = False
+            images_name = []
+        for i in request.FILES.getlist('myFile'):
+            images_name.append(f"{i.name}")
+            with open(f"{img_path}/{i.name}", 'wb+') as f:
+                for chunk in i.chunks():
+                    f.write(chunk)
+        images_dict[f"{log_id}"] = images_name if flag else images_name
+        with open("inspection/static/json/images_name.json", 'w') as f:
+            json.dump(images_dict, f)
         new_log = form.save(commit=False)
         new_log.user_name_id = request.user
         new_log.save()
@@ -83,6 +100,25 @@ def delete_log(request, log_id: int):
     log = models.Inspection_log.objects.get(id=log_id)
     log.delete()
     logs = models.Inspection_log.objects.all()
+    return redirect('inspection:inspection_log')
+
+def delete_img(request, log_id: int, name_img: str):
+    '''
+    Удаление изображения в log_details
+    '''
+    log = models.Inspection_log.objects.get(id=log_id)
+    with open("inspection/static/json/images_name.json", 'r') as f:
+        images_dict = json.load(f)
+    images_list = images_dict[f"{log_id}"]
+    print(images_list)
+    images_list.remove(f'{name_img}')
+    print(images_list)
+    with open("inspection/static/json/images_name.json", 'r') as f:
+        new_dict = json.load(f)
+        new_dict[f"{log_id}"] = images_list
+        with open("inspection/static/json/images_name.json", 'w') as file:
+            json.dump(new_dict, file)
+    #return render(request, 'inspection/inspection_log.html', {})
     return redirect('inspection:inspection_log')
 
 
