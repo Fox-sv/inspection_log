@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, response
 from . import models, forms
 import datetime, os, json
-
+from django.contrib.auth.models import User
 
 def home(request):
     return render(request, 'inspection/index.html', {})
@@ -13,7 +13,40 @@ def inspection_log(request):
     Журнал осмотра
     '''
     log = models.Inspection_log.objects.all()
-    return render(request, 'inspection/inspection_log.html', {'logs': log[::-1]})
+    if request.method == 'POST':
+        form = forms.InspectionLogForm(request.POST)                            # форма фильтра
+        if form.is_valid():
+            clean_data = form.cleaned_data
+            substation_name = clean_data['substation_name']
+            date_time_start = clean_data['date_time_start']
+            date_time_last = clean_data['date_time_last']
+            developer = clean_data['developer']
+            print(developer)
+            if date_time_start == None:                                         # если дата не заполнена, автоматически вносится
+                date_time_start = datetime.date(2010, 1, 1)
+            if date_time_last == None:
+                date_time_last = datetime.date(2050, 1, 1)
+            if developer != '0':
+                find_user_id = User.objects.filter(username=developer)[0].id
+            else:
+                find_user_id = 1
+
+
+
+            if len(substation_name) != 0:               
+                log = models.Inspection_log.objects.filter(substation_name=substation_name, date_record__lte=date_time_last, 
+                    date_record__gte=date_time_start, user_name_id__gte=find_user_id)
+                print(date_time_last)
+            else:
+                log = models.Inspection_log.objects.filter(date_record__lte=date_time_last, 
+                    date_record__gte=date_time_start, user_name_id=find_user_id)
+            return render(request, 'inspection/inspection_log.html', {'logs': log[::-1], 'form': form})
+        else:
+            form = forms.InspectionLogForm()
+            return redirect('inspection:inspection_log')
+    else:
+        form = forms.InspectionLogForm()
+        return render(request, 'inspection/inspection_log.html', {'logs': log[::-1], 'form': form})
 
 
 def log_form(request):
@@ -22,8 +55,9 @@ def log_form(request):
     '''
     if request.method == 'POST':
         form = forms.LogForms(request.POST, request.FILES)
+        
         images_name = []                                                        # список для названия фото
-        if form.is_valid():
+        if form.is_valid() :
             new_log = form.save(commit=False)
             new_log.user_name_id = request.user
             new_log.responsible_user_id =request.user
@@ -49,16 +83,16 @@ def log_form(request):
                         json.dump(new_dict, f)
             return redirect('inspection:inspection_log')
         else:
-            return render(request, 'inspection/log_form.html', {'form': form})
+            return render(request, 'inspection/log_form.html', {'form': form,})
     else:
         form = forms.LogForms()
-        return render(request, 'inspection/log_form.html', {'form': form})
+        return render(request, 'inspection/log_form.html', {'form': form, })
 
 
 def log_details(request, log_id: int):
+    # print(models.Inspection_log.objects.filter(substations__substation_name__contains='ПС-110 Восточная'))
     log = models.Inspection_log.objects.get(id=log_id)
     time_ = datetime.datetime.today()
-    print(time_.time())
     with open("inspection/static/json/images_name.json", 'r') as f:
         image_dict = json.load(f)
     try:
