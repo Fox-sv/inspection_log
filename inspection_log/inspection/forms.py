@@ -22,24 +22,20 @@ class LogForms(forms.ModelForm):
     class Meta:
         model = models.Inspection_log
         fields = '__all__'
-        # exclude = ['substation_img']
         widgets = {
             'job_type': forms.TextInput(attrs={'placeholder': 'Наименование работы'}),
             'record': forms.Textarea(attrs={'placeholder': 'Описание', 'resize': 'none'}),
             'substation_name': forms.TextInput(attrs={'placeholder': 'Подстанция/ТП'}),
-
         }
 
     date_record = forms.DateField(
         widget=forms.DateInput(format='%d-%m-%Y', attrs={'placeholder': 'Дата', 'class': 'datepicker', 'readonly': "readonly"}, ),
         input_formats=('%d-%m-%Y',),
-
     )
-    name_of_substation = forms.CharField(max_length=50)
+
 
 class InspectionLogForm(forms.Form):
     substation_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Подстанция/ТП'}), required=False)
     date_time_start = forms.DateField(widget=forms.DateInput(format='%d-%m-%Y', attrs={'placeholder': 'Дата начала', 'class': 'datepicker', 'readonly': 'readonly'}), input_formats=('%d-%m-%Y',), required=False)
     date_time_last = forms.DateField(widget=forms.DateInput(format='%d-%m-%Y', attrs={'placeholder': 'Дата окончания', 'class': 'datepicker2', 'readonly': 'readonly'}), input_formats=('%d-%m-%Y',), required=False)
     developer = forms.ChoiceField(choices=ALL_USERS, widget=forms.Select(attrs={'data-display': '1'},), required=False)
-    # sorted_log = forms.ChoiceField()

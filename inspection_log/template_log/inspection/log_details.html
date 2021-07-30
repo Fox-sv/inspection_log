@@ -1,4 +1,4 @@
-{% extends 'inspection/index.html' %}
+{% extends 'index.html' %}
 {% load static %}
 {% block title %} {{ log.job_type }} {% endblock %}
 {% block body %}
@@ -261,22 +261,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     </script>
 
-<!-- <script>
-$(document).ready(function () {
-var append_increment = 0;
-setInterval(function() {
-    $.ajax({
-        type: "GET",
-        url: "{% url 'inspection:log_details' log.id %}",
-        data: {'append_increment': append_increment}
-    })
-    .done(function(response) {
-        $('#resul').load(' #resul');
-        append_increment += 1;
 
-    });
-}, 1000)
-})
-</script> -->
 
 {% endblock %}

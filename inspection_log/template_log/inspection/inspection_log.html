@@ -1,4 +1,4 @@
-{% extends 'inspection/index.html' %}
+{% extends 'index.html' %}
 {% load static %}
 {% block title %} Журнал осмотра {% endblock %}
 {% block body %}
@@ -197,6 +197,6 @@
             $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
                 " - $" + $( "#slider-range" ).slider( "values", 1 ) + "/ Year");
         } );
-        </script>
+    </script>
 
 {% endblock %}

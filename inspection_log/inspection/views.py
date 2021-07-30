@@ -5,12 +5,12 @@ import datetime, os, json
 from django.contrib.auth.models import User
 
 def home(request):
-    return render(request, 'inspection/index.html', {})
+    return render(request, 'index.html', {})
 
 
 def inspection_log(request):
     '''
-    Журнал осмотра
+    Журнал осмотра и фильтром
     '''
     log = models.Inspection_log.objects.all()
     if request.method == 'POST':
@@ -21,25 +21,22 @@ def inspection_log(request):
             date_time_start = clean_data['date_time_start']
             date_time_last = clean_data['date_time_last']
             developer = clean_data['developer']
-            print(developer)
             if date_time_start == None:                                         # если дата не заполнена, автоматически вносится
                 date_time_start = datetime.date(2010, 1, 1)
             if date_time_last == None:
                 date_time_last = datetime.date(2050, 1, 1)
             if developer != '0':
-                find_user_id = User.objects.filter(username=developer)[0].id
+                find_user_id = User.objects.filter(username=developer)[0].id    # получение id пользователя по логину
+                find_user_id_last = find_user_id
             else:
                 find_user_id = 1
-
-
-
-            if len(substation_name) != 0:               
+                find_user_id_last = len(User.objects.all())                     
+            if len(substation_name) != 0:                                       # если ведено название подстанции           
                 log = models.Inspection_log.objects.filter(substation_name=substation_name, date_record__lte=date_time_last, 
-                    date_record__gte=date_time_start, user_name_id__gte=find_user_id)
-                print(date_time_last)
+                    date_record__gte=date_time_start, user_name_id__gte=find_user_id, user_name_id__lte=find_user_id_last)
             else:
                 log = models.Inspection_log.objects.filter(date_record__lte=date_time_last, 
-                    date_record__gte=date_time_start, user_name_id=find_user_id)
+                    date_record__gte=date_time_start, user_name_id__gte=find_user_id, user_name_id__lte=find_user_id_last)
             return render(request, 'inspection/inspection_log.html', {'logs': log[::-1], 'form': form})
         else:
             form = forms.InspectionLogForm()
@@ -55,7 +52,6 @@ def log_form(request):
     '''
     if request.method == 'POST':
         form = forms.LogForms(request.POST, request.FILES)
-        
         images_name = []                                                        # список для названия фото
         if form.is_valid() :
             new_log = form.save(commit=False)
@@ -66,12 +62,12 @@ def log_form(request):
             img_path = f"inspection/static/downloadimages/{id_log}"
             if not os.path.isdir(img_path):                                     # если папки нету, создаёт новую
                 os.mkdir(img_path)                                              # с именем id записи
-            for i in request.FILES.getlist('myFile'): # итерация по добавленным файлам через input и получение байт кода
+            for i in request.FILES.getlist('myFile'):                   # итерация по добавленным файлам через input и получение байт кода
                 images_name.append(str(i.name))                                 # имена фото
                 with open(f"{img_path}/{i.name}", 'wb+') as destination:
                     for chunk in i.chunks():
                         destination.write(chunk)
-            image_dict = {id_log: images_name}
+            image_dict = {id_log: images_name}                                      
             if not os.path.exists("inspection/static/json/images_name.json"):
                 with open("inspection/static/json/images_name.json", 'w') as f:   # в json хранятся значения id записи
                     json.dump(image_dict, f)                                      # и списка имени файлов
@@ -89,8 +85,7 @@ def log_form(request):
         return render(request, 'inspection/log_form.html', {'form': form, })
 
 
-def log_details(request, log_id: int):
-    # print(models.Inspection_log.objects.filter(substations__substation_name__contains='ПС-110 Восточная'))
+def log_details(request, log_id: int):    
     log = models.Inspection_log.objects.get(id=log_id)
     time_ = datetime.datetime.today()
     with open("inspection/static/json/images_name.json", 'r') as f:
@@ -138,6 +133,7 @@ def delete_log(request, log_id: int):
     log.delete()
     logs = models.Inspection_log.objects.all()
     return redirect('inspection:inspection_log')
+
 
 def delete_img(request, log_id: int, name_img: str):
     '''
