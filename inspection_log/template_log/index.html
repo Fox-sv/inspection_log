@@ -51,7 +51,9 @@
                                         <ul id="navigation">
                                             <li><a href="{% url 'inspection:start_page' %}">Главная</a></li>
                                             <li><a href="{% url 'inspection:inspection_log' %}">Журнал</a></li>
-                                            <li><a href="{% url 'inspection:log_form' %}">Добавить запись</a></li>
+                                            {% if perms.inspections.add_inspection_log %}
+                                                <li><a href="{% url 'inspection:log_form' %}">Добавить запись</a></li>
+                                            {% endif %}
                                         </ul>
                                     </nav>
                                 </div>

@@ -25,7 +25,7 @@ urlpatterns = [
     path('', include('inspection.urls')),
     path('register/', views.register_page, name='register'),
     path('login/', views.login_page, name='login'),
-    path('/logout', views.logoutUser, name='logout'),
+    path('logout/', views.logoutUser, name='logout'),
 
 
 ]

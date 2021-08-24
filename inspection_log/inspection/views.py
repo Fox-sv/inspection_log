@@ -39,7 +39,6 @@ def inspection_log(request):
                     date_record__gte=date_time_start, user_name_id__gte=find_user_id, user_name_id__lte=find_user_id_last)
             return render(request, 'inspection/inspection_log.html', {'logs': log[::-1], 'form': form})
         else:
-            form = forms.InspectionLogForm()
             return redirect('inspection:inspection_log')
     else:
         form = forms.InspectionLogForm()

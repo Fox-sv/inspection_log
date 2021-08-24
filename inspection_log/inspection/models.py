@@ -22,12 +22,6 @@ class Inspection_log(models.Model):
     note = models.BooleanField(default=False)
     substation_img = models.ImageField(upload_to='%Y%m%d/', null=True, blank=True)
 
-    def add_photo(self, photo_file):
-        with open(photo_file) as f:
-            my_file = File(f)
-            filename = "filename.jpg"
-            self.substation_img.save(filename, my_file)
-
     def __str__(self):
         return f'{self.date_record}, {self.substation_name} - {self.job_type}. {self.user_name_id}'
 
