@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_extend.scss */
+
 .flex-center-start {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1157,13 +1158,13 @@ h3 {
 @media (min-width: 1200px) and (max-width: 1500px) {
   /* line 176, ../../Arafath/CL/December/235. Job board/HTML/scss/_header.scss */
   .header-area .main-header-area .main-menu ul li a {
-    font-size: 13px;
+    font-size: 20px;
   }
 }
 
 /* line 193, ../../Arafath/CL/December/235. Job board/HTML/scss/_header.scss */
 .header-area .main-header-area .main-menu ul li a i {
-  font-size: 9px;
+  font-size: 15px;
 }
 
 @media (max-width: 767px) {
@@ -7500,5 +7501,4 @@ h6 {
 input[type=checkbox] {
     transform: scale(1.5);
 }
-
 

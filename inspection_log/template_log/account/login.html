@@ -31,7 +31,7 @@
       <div class="button login">
          <button type="submit"><span>Войти</span> <i class="fa fa-check"></i></button>
       </div>
-
+      <a href="{% url 'inspection:start_page' %}" class="pass-forgot">На главную</a> 
       <a href="#" class="pass-forgot">Забыли свой пароль?</a>
       <a href="{% url 'register' %}" class="pass-forgot">Регистраиця</a>
     </form>
@@ -42,8 +42,6 @@
          <span class="pass-forgot error-message">{{ message }}</span>
       {% endfor %}
    </div>
-   
-
 </div>
 
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

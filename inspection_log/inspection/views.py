@@ -12,7 +12,11 @@ def inspection_log(request):
     '''
     Журнал осмотра и фильтром
     '''
-    log = models.Inspection_log.objects.all()
+    if not request.user.has_perm('inspections.views_inspection_log'):
+        log = []
+    else:
+        log = models.Inspection_log.objects.all()
+    # print(log.order_by('date_record'))
     if request.method == 'POST':
         form = forms.InspectionLogForm(request.POST)                            # форма фильтра
         if form.is_valid():
@@ -21,6 +25,7 @@ def inspection_log(request):
             date_time_start = clean_data['date_time_start']
             date_time_last = clean_data['date_time_last']
             developer = clean_data['developer']
+            sort_list = clean_data['sort_list']
             if date_time_start == None:                                         # если дата не заполнена, автоматически вносится
                 date_time_start = datetime.date(2010, 1, 1)
             if date_time_last == None:
@@ -37,7 +42,13 @@ def inspection_log(request):
             else:
                 log = models.Inspection_log.objects.filter(date_record__lte=date_time_last, 
                     date_record__gte=date_time_start, user_name_id__gte=find_user_id, user_name_id__lte=find_user_id_last)
-            return render(request, 'inspection/inspection_log.html', {'logs': log[::-1], 'form': form})
+            if sort_list == 'date':
+                log = log.order_by('-date_record')
+            elif sort_list == 'occupancy':
+                log = log[::-1]
+            elif sort_list == 'warning':
+                log = log.order_by('-note')
+            return render(request, 'inspection/inspection_log.html', {'logs': log, 'form': form})
         else:
             return redirect('inspection:inspection_log')
     else:
@@ -49,6 +60,9 @@ def log_form(request):
     '''
     Форма для записи в журнал
     '''
+    # if not request.user.has_perm('inspection.add_inspection_log'): 
+    #     return render(request, 'inspection/log_form.html', {})
+    # else:
     if request.method == 'POST':
         form = forms.LogForms(request.POST, request.FILES)
         images_name = []                                                        # список для названия фото

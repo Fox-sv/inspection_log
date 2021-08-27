@@ -8,11 +8,11 @@
 <link rel="stylesheet" href="{% static 'css/loginregister.css' %}">
 
 
-   <div class="materialContainer">
+   <div class="materialContainer" >
 
    <form action="." method="POST">
    {% csrf_token %}
-         <div class="box">
+       <div class="box">
 
       <div class="title">Регистрация</div>
 
@@ -83,4 +83,15 @@
   </script>
 
 
+<!-- изменение размеров окна -->
+<script type="text/javascript">
+  setInterval( () => {
+
+    let winHeight = $(window).height();     // высота окна
+    let divHeight = $('.materialContainer').height();  // высота блока
+    let ratio = winHeight / divHeight;      // отношение между ними
+    $('.materialContainer').css({ zoom: ratio });      // масштабирование блока 
+
+}, 200);
+</script>
 {% endblock %}

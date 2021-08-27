@@ -44,4 +44,4 @@ def login_page(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('inspection:start_page')
