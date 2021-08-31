@@ -17,37 +17,37 @@
       <div class="title">Регистрация</div>
 
       <div class="input">
-         <label for="reglogin">Логин</label>
+         <!-- <label for="reglogin">Логин</label> -->
          {{form.username}}
          <span class="spin"></span>
       </div>
 
       <div class="input">
-         <label for="regemail">Email</label>
+         <!-- <label for="regemail">Email</label> -->
          {{form.email}}
          <span class="spin"></span>
       </div>
 
       <div class="input">
-         <label for="regfirstname">Имя</label>
+         <!-- <label for="regfirstname">Имя</label> -->
          {{form.first_name}}
          <span class="spin"></span>
       </div>
 
       <div class="input">
-         <label for="reglastname">Фамилия</label>
+         <!-- <label for="reglastname">Фамилия</label> -->
          {{form.last_name}}
          <span class="spin"></span>
       </div>
 
       <div class="input">
-         <label for="regpassword1">Пароль</label>
+         <!-- <label for="regpassword1">Пароль</label> -->
          {{form.password1}}
          <span class="spin"></span>
       </div>
 
       <div class="input">
-         <label for="regpassword2">Повторить пароль</label>
+         <!-- <label for="regpassword2">Повторить пароль</label> -->
          {{form.password2}}
          <span class="spin"></span>
       </div>
@@ -71,11 +71,13 @@
 
     var form_fields = document.getElementsByTagName('input')
     // form_fields[1].placeholder='Username..';
-    form_fields[2].id='regemail';
+    // form_fields[2].id='regemail';
     // form_fields[3].placeholder='Фамилия..';
     // form_fields[4].placeholder='Фамилия..';
-    form_fields[5].id='regpassword1';
-    form_fields[6].id='regpassword2';
+    // form_fields[5].id='regpassword1';
+    form_fields[5].placeholder='Пароль';
+    // form_fields[6].id='regpassword2';
+    form_fields[6].placeholder='Повторите пароль';
 
     for (var field in form_fields){
       form_fields[field].className += ' form-control'

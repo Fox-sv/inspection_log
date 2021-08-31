@@ -37,10 +37,10 @@
                                     <img src="{% static 'img/svg_icon/1.svg' %}" alt="">
                                 </div>
                                 <div class="jobs_conetent">
-                                    <a href="#"><h4>{{ log.job_type }}</h4></a>
+                                    <a href="#" style="text-decoration: none;"><h4>{{ log.job_type }}</h4></a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
-                                            <p> <i class="fa fa-user"></i> {{ log.user_name_id }}</p>
+                                            <p> <i class="fa fa-user"></i> {{ log.user_name_id.last_name}} {{ log.user_name_id.first_name.0}}.</p>
                                         </div>
                                         <div class="location">
                                             <p> <i class="fa fa-clock-o"></i> {{ log.date_record }}</p>

@@ -12,11 +12,11 @@ def inspection_log(request):
     '''
     Журнал осмотра и фильтром
     '''
-    if not request.user.has_perm('inspections.views_inspection_log'):
+    if not request.user.has_perm('inspection.view_inspection_log'):
         log = []
     else:
         log = models.Inspection_log.objects.all()
-    # print(log.order_by('date_record'))
+    print(log)
     if request.method == 'POST':
         form = forms.InspectionLogForm(request.POST)                            # форма фильтра
         if form.is_valid():
@@ -69,7 +69,7 @@ def log_form(request):
         if form.is_valid() :
             new_log = form.save(commit=False)
             new_log.user_name_id = request.user
-            new_log.responsible_user_id =request.user
+            new_log.responsible_user_id = request.user
             new_log.save()
             id_log = new_log.id
             img_path = f"inspection/static/downloadimages/{id_log}"

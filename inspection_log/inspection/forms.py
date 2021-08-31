@@ -16,7 +16,7 @@ def usernames():
     log = models.Inspection_log.objects.all()
     users = [i.user_name_id for i in log]
     log_users = [i for i in set(users)]
-    username = [(name, name) for key, name in enumerate(log_users)]
+    username = [(name, name.get_full_name()) for key, name in enumerate(log_users)]
     username.insert(0, ('0', 'Производитель'))
     return username
 

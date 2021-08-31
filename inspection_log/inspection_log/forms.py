@@ -8,9 +8,10 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
         widgets = {
-        	'username': forms.TextInput(attrs={'id': 'reglogin'}),
-        	'first_name': forms.TextInput(attrs={'id': 'regfirstname'}),
-        	'last_name': forms.TextInput(attrs={'id': 'reglastname'}),
-        	'password1': forms.PasswordInput(attrs={'id': 'regpassword1'}),
-        	'password2': forms.PasswordInput(attrs={'id': 'regpassword2'}),
+        	'username': forms.TextInput(attrs={'placeholder': 'Логин'}),
+            'email': forms.TextInput(attrs={'placeholder': 'Email'}),
+        	'first_name': forms.TextInput(attrs={'placeholder': 'Имя'}),
+        	'last_name': forms.TextInput(attrs={'placeholder': 'Фамилия'}),
+        	'password1': forms.PasswordInput(attrs={'placeholder': 'Пароль'}),
+        	'password2': forms.PasswordInput(attrs={'placeholder': 'Повторите пароль'}),
         }
