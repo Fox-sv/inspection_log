@@ -116,7 +116,7 @@
                                                 <a href="{% url 'inspection:log_details' log.id %}" class="boxed-btn3">Подробнее</a>
                                             </div>
                                             <div class="date">
-                                                <p>Дата записи: {{ log.date_record }}</p>
+                                                <p>Дата записи: {{ log.date_record|date:"d.m.Y" }}</p>
                                             </div>
                                         </div>
                                     </div>

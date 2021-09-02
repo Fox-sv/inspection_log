@@ -3,6 +3,8 @@ from django.http import HttpResponse, response
 from . import models, forms
 import datetime, os, json
 from django.contrib.auth.models import User
+import yandex_map
+
 
 def home(request):
     return render(request, 'index.html', {})
@@ -98,8 +100,12 @@ def log_form(request):
         return render(request, 'inspection/log_form.html', {'form': form, })
 
 
-def log_details(request, log_id: int):    
+def log_details(request, log_id: int):  
     log = models.Inspection_log.objects.get(id=log_id)
+    try:
+        location_of_substation = yandex_map.location[f'{log.substation_name}']
+    except KeyError:
+        location_of_substation = 0
     time_ = datetime.datetime.today()
     with open("inspection/static/json/images_name.json", 'r') as f:
         image_dict = json.load(f)
@@ -110,7 +116,7 @@ def log_details(request, log_id: int):
     if not log:
         raise Exception('No such log')
     else:
-        return render(request, 'inspection/log_details.html', {'log': log, 'log_id': log_id, 'image_list': image_list, 'time1': time_.time()})
+        return render(request, 'inspection/log_details.html', {'log': log, 'log_id': log_id, 'image_list': image_list, 'time1': time_.time(), 'location_of_substation': location_of_substation})
 
 
 def update_log(request, log_id: int):

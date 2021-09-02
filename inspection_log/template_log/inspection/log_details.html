@@ -43,7 +43,7 @@
                                             <p> <i class="fa fa-user"></i> {{ log.user_name_id.last_name}} {{ log.user_name_id.first_name.0}}.</p>
                                         </div>
                                         <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i> {{ log.date_record }}</p>
+                                            <p> <i class="fa fa-clock-o"></i> {{ log.date_record|date:"d.m.Y" }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +87,20 @@
                         <a href="{% url 'inspection:delete_log' log.id %}" class="boxed-btn3">Удалить</a>
                     </div>
                 </div>
+                {% if location_of_substation %}
 
+                <div class="col-lg-4">
+                    <div class="bradcam_text">
+                        <h3>Место расположения</h3>
+                    </div>
+                    <div class="job_location_wrap">
+                        <div class="job_lok_inner">
+                            <script type="text/javascript" charset="utf-8" async src={{location_of_substation}}></script>
+                          </div>
+                    </div>
+                </div>
+                {% else %}
+                {% endif %}
             </div>
         </div>
 
