@@ -51,12 +51,13 @@
                             <div class="jobs_right">
                                 <div class="apply_now">
                                     {% if log.note %}
-                                    <a class="warning" href="#s" onclick="return false"> <i class="heart_mark fa fa-exclamation-triangle"></i> </a>
+                                        <a class="warning" href="#s" onclick="return false"> <i class="heart_mark fa fa-exclamation-triangle"></i> </a>
                                     {% else %}
-                                    <a class="heart_mark" href="#" onclick="return false"> <i class="fa fa-check"></i> </a>
+                                        <a class="heart_mark" href="#" onclick="return false"> <i class="fa fa-check"></i> </a>
                                     {% endif %}
-                                    <a href="{% url 'inspection:update_log' log.id %}" class="boxed-btn3">Изменить</a>
-
+                                    {% if perms.inspection.change_inspection_log %}
+                                        <a href="{% url 'inspection:update_log' log.id %}" class="boxed-btn3">Изменить</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -76,7 +77,9 @@
                                             <a href="/static/downloadimages/{{ log_id }}/{{ img }}" class="img-pop-up del-img">
                                                 <div class="single-gallery-image" style="background: url(/static/downloadimages/{{ log_id }}/{{ img }})"></div>
                                             </a>
-                                            <a href="{% url 'inspection:delete_img' log.id img %}">Удалить</a>
+                                            {% if perms.inspection.change_inspection_log %}
+                                                <a href="{% url 'inspection:delete_img' log.id img %}">Удалить</a>
+                                            {% endif %}
                                         </div>
                                         {% endfor %}
                                     </div>
@@ -84,7 +87,9 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{% url 'inspection:delete_log' log.id %}" class="boxed-btn3">Удалить</a>
+                        {% if perms.inspection.delete_inspection_log %}
+                            <a href="{% url 'inspection:delete_log' log.id %}" class="boxed-btn3">Удалить</a>
+                        {% endif %}
                     </div>
                 </div>
                 {% if location_of_substation %}

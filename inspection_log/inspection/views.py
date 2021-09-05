@@ -66,8 +66,8 @@ def inspection_log(request):
                 log = log[::-1]
             elif sort_list == 'warning':
                 log = log.order_by('-note')
-
-            return render(request, 'inspection/inspection_log.html', {'logs': log, 'form': form})
+            content = {'logs': log, 'form': form}
+            return render(request, 'inspection/inspection_log.html', content if request.user.has_perm('inspection.view_inspection_log') else {})
         else:
             return redirect('inspection:inspection_log')
     else:
