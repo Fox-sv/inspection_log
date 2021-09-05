@@ -26,6 +26,7 @@
     <!--/ bradcam_area  -->
     
 {% if perms.inspection.add_inspection_log %}
+
 <form action="." method="POST" enctype="multipart/form-data">
 {% csrf_token %}
     <div class="job_details_area">
@@ -61,9 +62,14 @@
                                           </button>
                                         </div>
                                         <div class="custom-file">
+<!--                                             <input class="form-control" type="file" id="formFileMultiple" multiple>-->
+<!--                                             <label for="formFileMultiple" class="form-label">Multiple files input example</label>-->
+
                                             <input type="file" class="custom-file-input" id="customFile" aria-describedby="inputGroupFileAddon03" multiple="multiple" name="myFile">
                                             <label class="custom-file-label" for="customFile" >Загрузить фото</label>
                                         </div>
+
+
                                       </div>
                                 </div>
 
@@ -109,6 +115,7 @@
 
 </script>
 
+<script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
 <script>
     $(".custom-file-input").on("change", function() {
         var myFile = $(this).val().split("\\").pop();
@@ -121,4 +128,5 @@
         }
     });
 </script>
+
 {% endblock %}

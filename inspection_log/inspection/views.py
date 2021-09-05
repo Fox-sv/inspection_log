@@ -1,9 +1,25 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, response
 from . import models, forms
-import datetime, os, json
+import datetime, os, json, telebot
 from django.contrib.auth.models import User
-import yandex_map
+import yandex_map, all_path
+from PIL import Image, ImageOps, ImageFile, ExifTags
+
+
+bot = telebot.TeleBot(os.getenv('api_token'))
+chatId = os.getenv('chatId_my')
+ImageFile.LOAD_TRUNCATED_IMAGES = True
+
+
+def change_imagesize(name, img_path):
+    '''
+    уменьшение размера картинок
+    '''
+    new_img = Image.open(f'{img_path}/{name}')
+    image = ImageOps.exif_transpose(new_img)
+    image.save(f'{img_path}/{name}', format='JPEG', quality=50)
+    image.close()
 
 
 def home(request):
@@ -18,7 +34,6 @@ def inspection_log(request):
         log = []
     else:
         log = models.Inspection_log.objects.all()
-    print(log)
     if request.method == 'POST':
         form = forms.InspectionLogForm(request.POST)                            # форма фильтра
         if form.is_valid():
@@ -37,10 +52,11 @@ def inspection_log(request):
                 find_user_id_last = find_user_id
             else:
                 find_user_id = 1
-                find_user_id_last = len(User.objects.all())                     
+                find_user_id_last = User.objects.all().last().id
             if len(substation_name) != 0:                                       # если ведено название подстанции           
                 log = models.Inspection_log.objects.filter(substation_name=substation_name, date_record__lte=date_time_last, 
                     date_record__gte=date_time_start, user_name_id__gte=find_user_id, user_name_id__lte=find_user_id_last)
+                bot.send_message(chatId, text=f'начало - {date_time_start}, конец - {date_time_last}, user1 - {find_user_id}, user2 - {find_user_id_last}')
             else:
                 log = models.Inspection_log.objects.filter(date_record__lte=date_time_last, 
                     date_record__gte=date_time_start, user_name_id__gte=find_user_id, user_name_id__lte=find_user_id_last)
@@ -50,6 +66,7 @@ def inspection_log(request):
                 log = log[::-1]
             elif sort_list == 'warning':
                 log = log.order_by('-note')
+
             return render(request, 'inspection/inspection_log.html', {'logs': log, 'form': form})
         else:
             return redirect('inspection:inspection_log')
@@ -73,25 +90,31 @@ def log_form(request):
             new_log.user_name_id = request.user
             new_log.responsible_user_id = request.user
             new_log.save()
-            id_log = new_log.id
-            img_path = f"inspection/static/downloadimages/{id_log}"
+
+            message = f'{request.user.get_full_name()} сделал запись.\n{new_log.job_type}\n{new_log.substation_name}\n{datetime.datetime.now().strftime("%m.%d.%Y, %H:%M:%S")}'       # отправка сообщения в телеграм
+            bot.send_message(chatId, text=message)
+
+            id_log = new_log.id                                                 # id новой записи
+            img_path = all_path.downloadimages + f'/{id_log}'
             if not os.path.isdir(img_path):                                     # если папки нету, создаёт новую
                 os.mkdir(img_path)                                              # с именем id записи
-            for i in request.FILES.getlist('myFile'):                   # итерация по добавленным файлам через input и получение байт кода
+            for i in request.FILES.getlist('myFile'):                           # итерация по добавленным файлам через input и получение байт кода
                 images_name.append(str(i.name))                                 # имена фото
                 with open(f"{img_path}/{i.name}", 'wb+') as destination:
                     for chunk in i.chunks():
                         destination.write(chunk)
+                change_imagesize(i.name, img_path)
             image_dict = {id_log: images_name}                                      
-            if not os.path.exists("inspection/static/json/images_name.json"):
-                with open("inspection/static/json/images_name.json", 'w') as f:   # в json хранятся значения id записи
+            if not os.path.exists(all_path.images_name):
+                with open(all_path.images_name, 'w') as f:   # в json хранятся значения id записи
                     json.dump(image_dict, f)                                      # и списка имени файлов
             else:
-                with open("inspection/static/json/images_name.json", 'r') as f:
+                with open(all_path.images_name, 'r') as f:
                     img_dict = json.load(f)
                     new_dict = {**image_dict, **img_dict}                          # объединение словарей
-                    with open("inspection/static/json/images_name.json", 'w') as f:
+                    with open(all_path.images_name, 'w') as f:
                         json.dump(new_dict, f)
+
             return redirect('inspection:inspection_log')
         else:
             return render(request, 'inspection/log_form.html', {'form': form,})
@@ -107,7 +130,7 @@ def log_details(request, log_id: int):
     except KeyError:
         location_of_substation = 0
     time_ = datetime.datetime.today()
-    with open("inspection/static/json/images_name.json", 'r') as f:
+    with open(all_path.images_name, 'r') as f:
         image_dict = json.load(f)
     try:
         image_list = image_dict[f'{log.id}']
@@ -116,16 +139,18 @@ def log_details(request, log_id: int):
     if not log:
         raise Exception('No such log')
     else:
-        return render(request, 'inspection/log_details.html', {'log': log, 'log_id': log_id, 'image_list': image_list, 'time1': time_.time(), 'location_of_substation': location_of_substation})
+        content = {'log': log, 'log_id': log_id, 'image_list': image_list, 'time1': time_.time(),
+                   'location_of_substation': location_of_substation}
+        return render(request, 'inspection/log_details.html', content)
 
 
 def update_log(request, log_id: int):
     log = models.Inspection_log.objects.get(id=log_id)
-    img_path = f"inspection/static/downloadimages/{log_id}"
+    img_path = all_path.downloadimages + f'/{log_id}'
     form = forms.LogForms(request.POST or None, request.FILES or None, instance=log)
     if form.is_valid():
-        with open("inspection/static/json/images_name.json", 'r') as f:
-                images_dict = json.load(f)
+        with open(all_path.images_name, 'r') as f:
+            images_dict = json.load(f)
         try:
             flag = True
             images_name = images_dict[f'{log_id}'] 
@@ -137,17 +162,23 @@ def update_log(request, log_id: int):
             with open(f"{img_path}/{i.name}", 'wb+') as f:
                 for chunk in i.chunks():
                     f.write(chunk)
+                change_imagesize(str(i.name), img_path)
         images_dict[f"{log_id}"] = images_name if flag else images_name
-        with open("inspection/static/json/images_name.json", 'w') as f:
+        with open(all_path.images_name, 'w') as f:
             json.dump(images_dict, f)
         new_log = form.save(commit=False)
         new_log.user_name_id = request.user
+        message = f'{request.user.get_full_name()} изменил запись.\n{new_log.job_type}\n{new_log.substation_name}\n{datetime.datetime.now().strftime("%m.%d.%Y, %H:%M:%S")}'  # отправка сообщения в телеграм
+        bot.send_message(chatId, text=message)
         new_log.save()
         return redirect('inspection:log_details', log.id)
     return render(request, 'inspection/log_form.html', {'form': form})
 
 
 def delete_log(request, log_id: int):
+    '''
+    Удаление записи
+    '''
     log = models.Inspection_log.objects.get(id=log_id)
     log.delete()
     logs = models.Inspection_log.objects.all()
@@ -159,19 +190,13 @@ def delete_img(request, log_id: int, name_img: str):
     Удаление изображения в log_details
     '''
     log = models.Inspection_log.objects.get(id=log_id)
-    with open("inspection/static/json/images_name.json", 'r') as f:
+    with open(all_path.images_name, 'r') as f:
         images_dict = json.load(f)
     images_list = images_dict[f"{log_id}"]
-    print(images_list)
     images_list.remove(f'{name_img}')
-    print(images_list)
-    with open("inspection/static/json/images_name.json", 'r') as f:
+    with open(all_path.images_name, 'r') as f:
         new_dict = json.load(f)
         new_dict[f"{log_id}"] = images_list
-        with open("inspection/static/json/images_name.json", 'w') as file:
+        with open(all_path.images_name, 'w') as file:
             json.dump(new_dict, file)
     return redirect('inspection:log_details', log.id)
-
-
-def substations_all(request):
-    substations = models.Inspection_log.objects.filter(substation_name='somebody')
