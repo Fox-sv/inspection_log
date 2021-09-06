@@ -141,7 +141,7 @@ def log_details(request, log_id: int):
     else:
         content = {'log': log, 'log_id': log_id, 'image_list': image_list, 'time1': time_.time(),
                    'location_of_substation': location_of_substation}
-        return render(request, 'inspection/log_details.html', content)
+        return render(request, 'inspection/log_details.html', content if request.user.has_perm('inspection.view_inspection_log') else {})
 
 
 def update_log(request, log_id: int):
