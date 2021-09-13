@@ -91,7 +91,8 @@ def log_form(request):
             new_log.responsible_user_id = request.user
             new_log.save()
 
-            message = f'{request.user.get_full_name()} сделал запись.\n{new_log.job_type}\n{new_log.substation_name}\n{datetime.datetime.now().strftime("%m.%d.%Y, %H:%M:%S")}'       # отправка сообщения в телеграм
+            time_now = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
+            message = f'{request.user.get_full_name()} сделал запись.\n{new_log.job_type}\n{new_log.substation_name}\n{time_now.strftime("%m.%d.%Y, %H:%M:%S")}'       # отправка сообщения в телеграм
             bot.send_message(chatId, text=message)
 
             id_log = new_log.id                                                 # id новой записи
@@ -168,7 +169,8 @@ def update_log(request, log_id: int):
             json.dump(images_dict, f)
         new_log = form.save(commit=False)
         new_log.user_name_id = request.user
-        message = f'{request.user.get_full_name()} изменил запись.\n{new_log.job_type}\n{new_log.substation_name}\n{datetime.datetime.now().strftime("%m.%d.%Y, %H:%M:%S")}'  # отправка сообщения в телеграм
+        time_now = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
+        message = f'{request.user.get_full_name()} изменил запись.\n{new_log.job_type}\n{new_log.substation_name}\n{time_now.strftime("%m.%d.%Y, %H:%M:%S")}'  # отправка сообщения в телеграм
         bot.send_message(chatId, text=message)
         new_log.save()
         return redirect('inspection:log_details', log.id)
