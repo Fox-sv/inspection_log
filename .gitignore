@@ -113,6 +113,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+images_name.json
 
 # Spyder project settings
 .spyderproject

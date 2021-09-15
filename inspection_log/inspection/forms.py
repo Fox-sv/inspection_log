@@ -1,5 +1,6 @@
 from django import forms
 from . import models
+from django.db.utils import OperationalError
 
 
 SORTED_LOG = (
@@ -13,12 +14,19 @@ def usernames():
     '''
     Список всех зарегистрированых пользователей
     '''
-    log = models.Inspection_log.objects.all()
-    users = [i.user_name_id for i in log]
-    log_users = [i for i in set(users)]
-    username = [(name, name.get_full_name()) for key, name in enumerate(log_users)]
-    username.insert(0, ('0', 'Производитель'))
-    return username
+
+    try:
+        log = models.Inspection_log.objects.all()
+        users = [i.user_name_id for i in log]
+        log_users = [i for i in set(users)]
+        username = [(name, name.get_full_name()) for key, name in enumerate(log_users)]
+        username.insert(0, ('0', 'Производитель'))
+        return username
+    except OperationalError:
+        username = []
+        username.insert(0, ('0', 'Производитель'))
+        return username
+
 
 
 

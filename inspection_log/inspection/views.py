@@ -79,9 +79,9 @@ def log_form(request):
     '''
     Форма для записи в журнал
     '''
-    # if not request.user.has_perm('inspection.add_inspection_log'): 
-    #     return render(request, 'inspection/log_form.html', {})
-    # else:
+    if not os.path.isdir(all_path.downloadimages):
+        os.mkdir(all_path.downloadimages)
+
     if request.method == 'POST':
         form = forms.LogForms(request.POST, request.FILES)
         images_name = []                                                        # список для названия фото
