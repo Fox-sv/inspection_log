@@ -5,6 +5,7 @@ import datetime, os, json, telebot
 from django.contrib.auth.models import User
 import yandex_map, all_path
 from PIL import Image, ImageOps, ImageFile, ExifTags
+from django.db.models import Count
 
 
 bot = telebot.TeleBot(os.getenv('api_token'))
@@ -23,7 +24,13 @@ def change_imagesize(name, img_path):
 
 
 def home(request):
-    return render(request, 'index.html', {})
+    job_count = {}
+    all_job = models.Inspection_log.objects.values('job_type').distinct()
+    for job in all_job:
+        job_count[job['job_type']] = models.Inspection_log.objects.filter(job_type=job['job_type']).count()
+    print(job_count)
+    content = {"job_count": job_count}
+    return render(request, 'index.html', content)
 
 
 def inspection_log(request):
