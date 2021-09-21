@@ -4,7 +4,7 @@ from . import models, forms
 import datetime, os, json, telebot
 from django.contrib.auth.models import User
 import yandex_map, all_path
-from PIL import Image, ImageOps, ImageFile, ExifTags
+from PIL import Image, ImageOps, ImageFile, UnidentifiedImageError
 from django.db.models import Count
 
 
@@ -12,15 +12,26 @@ bot = telebot.TeleBot(os.getenv('api_token'))
 chatId = os.getenv('chatId_my')
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
+def send_message_tg(type_message, name, job_type, substation):
+    '''
+    Отправка уведомления в телеграмм
+    '''
+    time_now = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
+    message = f'{name} {type_message}.\n{job_type}\n{substation}\n{time_now.strftime("%d.%m.%Y, %H:%M:%S")}'
+    bot.send_message(chatId, text=message)
 
 def change_imagesize(name, img_path):
     '''
     уменьшение размера картинок
     '''
-    new_img = Image.open(f'{img_path}/{name}')
-    image = ImageOps.exif_transpose(new_img)
-    image.save(f'{img_path}/{name}', format='JPEG', quality=50)
-    image.close()
+    try:
+        new_img = Image.open(f'{img_path}/{name}')
+        image = ImageOps.exif_transpose(new_img)
+        image.save(f'{img_path}/{name}', format='JPEG', quality=50)
+        image.close()
+    except UnidentifiedImageError:
+        pass
+
 
 
 def home(request):
@@ -28,7 +39,7 @@ def home(request):
     all_job = models.Inspection_log.objects.values('job_type').distinct()
     for job in all_job:
         job_count[job['job_type']] = models.Inspection_log.objects.filter(job_type=job['job_type']).count()
-    print(job_count)
+
     content = {"job_count": job_count}
     return render(request, 'index.html', content)
 
@@ -97,11 +108,7 @@ def log_form(request):
             new_log.user_name_id = request.user
             new_log.responsible_user_id = request.user
             new_log.save()
-
-            time_now = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
-            message = f'{request.user.get_full_name()} сделал запись.\n{new_log.job_type}\n{new_log.substation_name}\n{time_now.strftime("%m.%d.%Y, %H:%M:%S")}'       # отправка сообщения в телеграм
-            bot.send_message(chatId, text=message)
-
+            send_message_tg('сделал запись', request.user.get_full_name(), new_log.job_type, new_log.substation_name)
             id_log = new_log.id                                                 # id новой записи
             img_path = all_path.downloadimages + f'/{id_log}'
             if not os.path.isdir(img_path):                                     # если папки нету, создаёт новую
@@ -176,9 +183,7 @@ def update_log(request, log_id: int):
             json.dump(images_dict, f)
         new_log = form.save(commit=False)
         new_log.user_name_id = request.user
-        time_now = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
-        message = f'{request.user.get_full_name()} изменил запись.\n{new_log.job_type}\n{new_log.substation_name}\n{time_now.strftime("%m.%d.%Y, %H:%M:%S")}'  # отправка сообщения в телеграм
-        bot.send_message(chatId, text=message)
+        send_message_tg('изменил запись', request.user.get_full_name(), new_log.job_type, new_log.substation_name)
         new_log.save()
         return redirect('inspection:log_details', log.id)
     return render(request, 'inspection/log_form.html', {'form': form})
@@ -190,7 +195,7 @@ def delete_log(request, log_id: int):
     '''
     log = models.Inspection_log.objects.get(id=log_id)
     log.delete()
-    logs = models.Inspection_log.objects.all()
+    send_message_tg('удалил запись', request.user.get_full_name(), log.job_type, log.substation_name)
     return redirect('inspection:inspection_log')
 
 
