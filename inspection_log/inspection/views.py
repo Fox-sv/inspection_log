@@ -72,9 +72,8 @@ def inspection_log(request):
                 find_user_id = 1
                 find_user_id_last = User.objects.all().last().id
             if len(substation_name) != 0:                                       # если ведено название подстанции           
-                log = models.Inspection_log.objects.filter(substation_name=substation_name, date_record__lte=date_time_last, 
+                log = models.Inspection_log.objects.filter(substation_name=substation_name, date_record__lte=date_time_last,
                     date_record__gte=date_time_start, user_name_id__gte=find_user_id, user_name_id__lte=find_user_id_last)
-                bot.send_message(chatId, text=f'начало - {date_time_start}, конец - {date_time_last}, user1 - {find_user_id}, user2 - {find_user_id_last}')
             else:
                 log = models.Inspection_log.objects.filter(date_record__lte=date_time_last, 
                     date_record__gte=date_time_start, user_name_id__gte=find_user_id, user_name_id__lte=find_user_id_last)
@@ -121,7 +120,7 @@ def log_form(request):
                 change_imagesize(i.name, img_path)
             image_dict = {id_log: images_name}                                      
             if not os.path.exists(all_path.images_name):
-                with open(all_path.images_name, 'w') as f:   # в json хранятся значения id записи
+                with open(all_path.images_name, 'w') as f:                        # в json хранятся значения id записи
                     json.dump(image_dict, f)                                      # и списка имени файлов
             else:
                 with open(all_path.images_name, 'r') as f:
@@ -140,10 +139,9 @@ def log_form(request):
 
 def log_details(request, log_id: int):  
     log = models.Inspection_log.objects.get(id=log_id)
-    try:
-        location_of_substation = yandex_map.location[f'{log.substation_name}']
-    except KeyError:
-        location_of_substation = 0
+
+    location_of_substation = yandex_map.location.get(f'{log.substation_name}')
+
     time_ = datetime.datetime.today()
     with open(all_path.images_name, 'r') as f:
         image_dict = json.load(f)
@@ -158,6 +156,9 @@ def log_details(request, log_id: int):
                    'location_of_substation': location_of_substation}
         return render(request, 'inspection/log_details.html', content if request.user.has_perm('inspection.view_inspection_log') else {})
 
+def objects_location(request):
+    content = {"objects_location": yandex_map.location}
+    return render(request, 'inspection/objects_location.html', content)
 
 def update_log(request, log_id: int):
     log = models.Inspection_log.objects.get(id=log_id)
