@@ -12,6 +12,7 @@ bot = telebot.TeleBot(os.getenv('api_token'))
 chatId = os.getenv('chatId_my')
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
+
 def send_message_tg(type_message, name, job_type, substation):
     '''
     Отправка уведомления в телеграмм
@@ -19,6 +20,7 @@ def send_message_tg(type_message, name, job_type, substation):
     time_now = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
     message = f'{name} {type_message}.\n{job_type}\n{substation}\n{time_now.strftime("%d.%m.%Y, %H:%M:%S")}'
     bot.send_message(chatId, text=message)
+
 
 def change_imagesize(name, img_path):
     '''
@@ -33,6 +35,22 @@ def change_imagesize(name, img_path):
         pass
 
 
+def ignore_case(name):
+    try:
+        if ' ' in name:
+            full_name = name.split(' ')
+            substation_name = full_name[0].upper() + ' ' + full_name[1][0].upper() + full_name[1][1:]
+        elif 'тп' in name.lower():
+            substation_name = name.upper()
+        else:
+            substation_name = name
+        return substation_name
+    except Exception:
+        return name
+
+    
+   
+
 
 def home(request):
     job_count = {}
@@ -46,7 +64,7 @@ def home(request):
 
 def inspection_log(request):
     '''
-    Журнал осмотра и фильтром
+    Журнал осмотра с фильтром
     '''
     if not request.user.has_perm('inspection.view_inspection_log'):
         log = []
@@ -71,8 +89,8 @@ def inspection_log(request):
             else:
                 find_user_id = 1
                 find_user_id_last = User.objects.all().last().id
-            if len(substation_name) != 0:                                       # если ведено название подстанции           
-                log = models.Inspection_log.objects.filter(substation_name=substation_name, date_record__lte=date_time_last,
+            if len(substation_name) != 0:                                   # если ведено название подстанции           
+                log = models.Inspection_log.objects.filter(substation_name=ignore_case(substation_name), date_record__lte=date_time_last,
                     date_record__gte=date_time_start, user_name_id__gte=find_user_id, user_name_id__lte=find_user_id_last)
             else:
                 log = models.Inspection_log.objects.filter(date_record__lte=date_time_last, 

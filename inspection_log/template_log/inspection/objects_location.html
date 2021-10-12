@@ -49,7 +49,7 @@
                                 {% for object, coordinates in objects_location.items %}
                                     <!-- Modal -->
 
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal{{forloop.counter0}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -57,7 +57,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    {{ name }}
+                                                  
                                                     <div class="job_location_wrap">
                                                         <div class="job_lok_inner">
                                                             <script type="text/javascript" charset="utf-8" async src={{coordinates}}></script>
@@ -73,7 +73,7 @@
 
                                     <div class="col-lg-4 col-xl-3 col-md-6">
                                         <div class="single_catagory">
-                                            <a href="#" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#exampleModal"><h4>{{object}}</h4></a>
+                                            <a href="#" style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#exampleModal{{forloop.counter0}}"><h4>{{object}}</h4></a>
 <!--                                            <p> <span>50</span> Кол-во посещений</p>-->
                                         </div>
                                     </div>
