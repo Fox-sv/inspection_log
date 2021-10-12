@@ -133,4 +133,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'inspection/static/downloadimages')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # During development only
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # During development only
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.hosting.reg.ru'
+EMAIL_HOST_USER = os.getenv('email_user')
+EMAIL_HOST_PASSWORD = os.getenv('email_password')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = os.getenv('email_user')

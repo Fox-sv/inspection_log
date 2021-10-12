@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 import yandex_map, all_path
 from PIL import Image, ImageOps, ImageFile, UnidentifiedImageError
 from django.db.models import Count
-
+from django.core.mail import send_mail
 
 bot = telebot.TeleBot(os.getenv('api_token'))
 chatId = os.getenv('chatId_my')
@@ -57,7 +57,6 @@ def home(request):
     all_job = models.Inspection_log.objects.values('job_type').distinct()
     for job in all_job:
         job_count[job['job_type']] = models.Inspection_log.objects.filter(job_type=job['job_type']).count()
-
     content = {"job_count": job_count}
     return render(request, 'index.html', content)
 
