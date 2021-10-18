@@ -2,14 +2,6 @@
 {% load static %}
 {% block title %} Журнал осмотра {% endblock %}
 {% block body %}
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
-
-    <!-- header-start -->
-
-    <!-- header-end -->
-
     <!-- bradcam_area  -->
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
@@ -22,21 +14,6 @@
             </div>
         </div>
     </div>
-    <!--/ bradcam_area  -->
-
-    <!-- job_listing_area_start  -->
-
-
-
-<!--    <a type="button" data-toggle="collapse" data-target="#demo">-->
-<!--    Link with href-->
-<!--  </a>-->
-<!--  <div id="demo" class="collapse">-->
-<!--    Lorem ipsum dolor sit amet, consectetur adipisicing elit,-->
-<!--    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,-->
-<!--    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.-->
-<!--  </div>-->
-
         <div class="job_listing_area plus_padding">
             <div class="container">
                 <div class="row">
@@ -150,15 +127,8 @@
         </div>
 
 
-    <!-- job_listing_area_end  -->
 
-    <!-- footer start -->
-<!--  -->
-    <!--/ footer end  -->
-
-    <!-- link that opens popup -->
-<!--    &lt;!&ndash; JS here &ndash;&gt;-->
-
+    <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
 
 
 	<script>
@@ -179,7 +149,7 @@
 
 <!--Быстрый поиск-->
     <script>
-    function myFunction() {
+        function myFunction() {
         var input, filter, ul, li, a, i;
         input = document.getElementById("InputFastSearch");
         filter = input.value.toUpperCase();

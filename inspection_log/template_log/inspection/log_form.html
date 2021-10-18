@@ -2,32 +2,33 @@
 {% load static %}
 {% block title %} Запись в журнал {% endblock %}
 {% block body %}
+<link rel="stylesheet" href="{% static 'css/animation_load.css' %}">
 
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
-
-    <!-- header-start -->
-
-    <!-- header-end -->
-
-    <!-- bradcam_area  -->
-    <div class="bradcam_area bradcam_bg_1">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="bradcam_text">
-                        <h3>Запись в журнал</h3>
-                    </div>
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h3>Запись в журнал</h3>
                 </div>
             </div>
         </div>
     </div>
-    <!--/ bradcam_area  -->
+</div>
+<!--/ bradcam_area  -->
+
+<!--Анимация загрузки POST запроса-->
+<div id="check" >
+   <div class="text-center modal_load">
+      <div class="spinner-border text-info" role="status" style="width: 10rem; height: 10rem;">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+</div>
 
 {% if perms.inspection.add_inspection_log %}
-
-<form action="." method="POST" enctype="multipart/form-data">
+<form action="." method="POST" enctype="multipart/form-data" id="animation_load">
 {% csrf_token %}
     <div class="job_details_area">
         <div class="container">
@@ -52,7 +53,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="input_field">
-                                        {{ form.record }}                                 
+                                        {{ form.record }}
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -102,10 +103,12 @@
     </div>
 </form>
 {% else %}
-<h2>Вы не можете вносить записи</h2>
+    <h2>Вы не можете вносить записи</h2>
 {% endif %}
 
+<script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
 
+<!--Формат даты-->
 <script type="text/javascript">
     $(function () {
         $('.datepicker').datepicker({
@@ -115,7 +118,7 @@
 
 </script>
 
-<script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+<!--Количество выбранных файлов-->
 <script>
     $(".custom-file-input").on("change", function() {
         var myFile = $(this).val().split("\\").pop();
@@ -129,4 +132,26 @@
     });
 </script>
 
+<!--Ajax с анимацией загрузки-->
+<script>
+$(document).ready(function () {
+    $("#animation_load").submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "{% url 'inspection:log_form' %}",
+            data: $('#animation_load').serialize(),
+            beforeSend: function() {
+                $("#check").show();
+            },
+            complete: function(){
+            },
+            success: function (data) {
+                $("#check").hide();
+                window.location = "{% url 'inspection:inspection_log' %}"
+            }
+        });
+    });
+});
+</script>
 {% endblock %}

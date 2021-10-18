@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, response
+from django.http import HttpResponse, response, JsonResponse
 from . import models, forms
 import datetime, os, json, telebot
 from django.contrib.auth.models import User
@@ -48,9 +48,6 @@ def ignore_case(name):
     except Exception:
         return name
 
-    
-   
-
 
 def home(request):
     job_count = {}
@@ -88,11 +85,11 @@ def inspection_log(request):
             else:
                 find_user_id = 1
                 find_user_id_last = User.objects.all().last().id
-            if len(substation_name) != 0:                                   # если ведено название подстанции           
+            if len(substation_name) != 0:                                   # если ведено название подстанции
                 log = models.Inspection_log.objects.filter(substation_name=ignore_case(substation_name), date_record__lte=date_time_last,
                     date_record__gte=date_time_start, user_name_id__gte=find_user_id, user_name_id__lte=find_user_id_last)
             else:
-                log = models.Inspection_log.objects.filter(date_record__lte=date_time_last, 
+                log = models.Inspection_log.objects.filter(date_record__lte=date_time_last,
                     date_record__gte=date_time_start, user_name_id__gte=find_user_id, user_name_id__lte=find_user_id_last)
             if sort_list == 'date':
                 log = log.order_by('-date_record')
@@ -115,11 +112,10 @@ def log_form(request):
     '''
     if not os.path.isdir(all_path.downloadimages):
         os.mkdir(all_path.downloadimages)
-
     if request.method == 'POST':
         form = forms.LogForms(request.POST, request.FILES)
         images_name = []                                                        # список для названия фото
-        if form.is_valid() :
+        if form.is_valid():
             new_log = form.save(commit=False)
             new_log.user_name_id = request.user
             new_log.responsible_user_id = request.user
@@ -173,9 +169,11 @@ def log_details(request, log_id: int):
                    'location_of_substation': location_of_substation}
         return render(request, 'inspection/log_details.html', content if request.user.has_perm('inspection.view_inspection_log') else {})
 
+
 def objects_location(request):
     content = {"objects_location": yandex_map.location}
     return render(request, 'inspection/objects_location.html', content)
+
 
 def update_log(request, log_id: int):
     log = models.Inspection_log.objects.get(id=log_id)

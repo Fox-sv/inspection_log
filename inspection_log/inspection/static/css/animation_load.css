@@ -1,0 +1,10 @@
+#check {
+    display: none;
+    }
+.modal_load {
+    position: absolute;
+    left: 50%;
+    margin-top: 10%;
+    z-index: 9999;
+
+}
