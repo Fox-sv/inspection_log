@@ -28,7 +28,7 @@
 </div>
 
 {% if perms.inspection.add_inspection_log %}
-<form action="." method="POST" enctype="multipart/form-data" id="animation_load">
+<form enctype="multipart/form-data" action="." method="POST" id="animation_load">
 {% csrf_token %}
     <div class="job_details_area">
         <div class="container">
@@ -38,7 +38,6 @@
 <!--                        <h4>Apply for the job</h4>-->
                         <form action="#">
                             <div class="row">
-
                                 <div class="col-md-6">
                                     <div class="input_field">
                                         {{ form.job_type }}
@@ -137,10 +136,14 @@
 $(document).ready(function () {
     $("#animation_load").submit(function (event) {
         event.preventDefault();
+        var data = new FormData($('#animation_load').get(0));
         $.ajax({
             type: "POST",
-            url: "{% url 'inspection:log_form' %}",
-            data: $('#animation_load').serialize(),
+            url: "",
+            data : data,
+            cache: false,
+            contentType: false,
+            processData: false,
             beforeSend: function() {
                 $("#check").show();
             },
@@ -148,10 +151,10 @@ $(document).ready(function () {
             },
             success: function (data) {
                 $("#check").hide();
-                window.location = "{% url 'inspection:inspection_log' %}"
             }
         });
     });
 });
 </script>
 {% endblock %}
+<!--                window.location = "{% url 'inspection:inspection_log' %}"-->
