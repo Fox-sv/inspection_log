@@ -60,6 +60,7 @@ location = {
     'ПС-35 Ерёмино': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9d9a47aadd7cefcd3c9295cf4c8fd81a4d5b8cc638845a21da65a85ff259686a&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-35 Михайловская': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3ca8b3afb8f2e746d5bd67704cb67e765d4f965aab296ad0a15a08c67c61fd7d&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
     'ПС-35 Неглюбка': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ada53d3c8ff66d3bd42f593aa1535e9153e4836d25cf34430d34e4d5084743a9e&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
+    'ПС-35 Студёная Гута': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A4dd23a8bd070888c94c21c14f8addb35e48e90c411a3613bfefe54f861846aef&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-35 Хальч': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8b41ace82ff7dcd15d4113841cad3f78ff6df214127c42d8821d59966a68d3ba&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
 
     'ПС-110 Бардино': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A7265ff8c931d046ad60a43995faf00bb1ab2949ba230f1bb83d55dc361db5933&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
@@ -69,6 +70,7 @@ location = {
     'ПС-110 Дятловичи': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A40e53d017ea283d8c7a462c255aded647d868323a8c0f48952ae7f0fe0be5da8&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Коммунар': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A95f66a6b98ca921f98a4f518db63b117812eaa572d8712135f84ad45819f087c&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 КПД': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A33bcf9fb9d5b31d0fc47924d63eab48698f829c82c1409a074f31a29806ce56b&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
+    'ПС-110 Новобелица': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac9412f63ab68097243ce8e7362481e3c49ff0b80650241be39da3f502b71d266&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Радиоаппаратура': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aa6999e58170416fd2414cb7c83194109f9588f7d8d1c70275bac2e95958fadd0&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Светиловичи': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9c2141f786cdbd5fbad96319da0d6a0959904283abaa36c181923a7e75d63819&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Стеклозавод': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3869450e51c9f3174bd26c81c4345cb33a628a070abb84720878e1b711213fa4&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',

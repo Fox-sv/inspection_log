@@ -151,10 +151,11 @@ $(document).ready(function () {
             },
             success: function (data) {
                 $("#check").hide();
+                window.location = "{% url 'inspection:inspection_log' %}"
             }
         });
     });
 });
 </script>
 {% endblock %}
-<!--                window.location = "{% url 'inspection:inspection_log' %}"-->
+
