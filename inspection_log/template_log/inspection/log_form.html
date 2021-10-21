@@ -19,13 +19,13 @@
 <!--/ bradcam_area  -->
 
 <!--Анимация загрузки POST запроса-->
-<div id="check" >
-   <div class="text-center modal_load">
-      <div class="spinner-border text-info" role="status" style="width: 10rem; height: 10rem;">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
-</div>
+<!--<div id="check" >-->
+<!--   <div class="text-center modal_load">-->
+<!--      <div class="spinner-border text-info" role="status" style="width: 10rem; height: 10rem;">-->
+<!--        <span class="sr-only">Loading...</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 {% if perms.inspection.add_inspection_log %}
 <form enctype="multipart/form-data" action="." method="POST" id="animation_load">
@@ -35,13 +35,11 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="apply_job_form white-bg">
-<!--                        <h4>Apply for the job</h4>-->
                         <form action="#">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input_field">
                                         {{ form.job_type }}
-<!--                                        <input type="text" placeholder="Your name">-->
                                     </div>
                                 </div>
 
@@ -50,8 +48,20 @@
                                         {{ form.substation_name }}
                                     </div>
                                 </div>
+                                <div id="fountainG">
+                                    <div id="fountainG_1" class="fountainG"></div>
+                                    <div id="fountainG_2" class="fountainG"></div>
+                                    <div id="fountainG_3" class="fountainG"></div>
+                                    <div id="fountainG_4" class="fountainG"></div>
+                                    <div id="fountainG_5" class="fountainG"></div>
+                                    <div id="fountainG_6" class="fountainG"></div>
+                                    <div id="fountainG_7" class="fountainG"></div>
+                                    <div id="fountainG_8" class="fountainG"></div>
+                                </div>
                                 <div class="col-md-12">
+
                                     <div class="input_field">
+
                                         {{ form.record }}
                                     </div>
                                 </div>
@@ -88,8 +98,21 @@
 							        </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="submit_btn">
-                                        <button class="boxed-btn3 w-100" type="submit">Сохранить</button>
+                                    <span class="submit_btn">
+                                        <button class="boxed-btn3 w-100" type="submit">Сохранить
+                                            <span id="check" style="display: none;">
+                                            <div id="floatingCirclesG" style="display:inline-block;">
+                                                <div class="f_circleG" id="frotateG_01"></div>
+                                                <div class="f_circleG" id="frotateG_02"></div>
+                                                <div class="f_circleG" id="frotateG_03"></div>
+                                                <div class="f_circleG" id="frotateG_04"></div>
+                                                <div class="f_circleG" id="frotateG_05"></div>
+                                                <div class="f_circleG" id="frotateG_06"></div>
+                                                <div class="f_circleG" id="frotateG_07"></div>
+                                                <div class="f_circleG" id="frotateG_08"></div>
+                                            </div>
+                                                </span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -146,11 +169,13 @@ $(document).ready(function () {
             processData: false,
             beforeSend: function() {
                 $("#check").show();
+                $("#fountainG").show();
             },
             complete: function(){
             },
             success: function (data) {
                 $("#check").hide();
+                $("#fountainG").hide();
                 window.location = "{% url 'inspection:inspection_log' %}"
             }
         });

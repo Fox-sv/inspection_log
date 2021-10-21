@@ -51,6 +51,7 @@ location = {
     'ТП-959': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Adb41f4034412c25446f7e4b0bf4a57b1015495d6ddf01d5af32094a42d687695&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
     'ТП-1062': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Abc249c24621f973cdd5a956e87024e07a0881ef080e441e276fe339fa082ebc9&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
     'ТП-1167': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ae95992a1a2549180f311089a9a6b1cb6bfaee961300e3cdeb73e4ea22266580d&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
+    'ТП-1341': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aef2417ce9bd3b5bc48d1a299a16f83eeb275c34d0751c2f3fa8a495bb953ce79&amp;width=400&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
 
     'РП-3': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab7970f9ff1d31e3d1510ba8fbeb405c047f789ab298e2551e2924d2f7a5c413f&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'РП-38': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A7915a2d8b1966b78e014a24ffc7a6354641f29423bd0f7a39baeb2c41fb39512&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
