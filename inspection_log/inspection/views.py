@@ -37,9 +37,13 @@ def change_imagesize(name, img_path):
 
 def ignore_case(name):
     try:
-        if ' ' in name:
+        if 'пс' in name.lower():
             full_name = name.split(' ')
-            substation_name = full_name[0].upper() + ' ' + full_name[1][0].upper() + full_name[1][1:]
+            substation_name = full_name[0].upper() + ' '
+            for i in full_name[1::]:
+                substation_name += i.title()
+                if len(full_name[1::]) >= 2 and i != full_name[-1]:
+                    substation_name += ' '
         elif 'тп' in name.lower():
             substation_name = name.upper()
         else:

@@ -51,7 +51,7 @@ location = {
     'ТП-959': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Adb41f4034412c25446f7e4b0bf4a57b1015495d6ddf01d5af32094a42d687695&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
     'ТП-1062': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Abc249c24621f973cdd5a956e87024e07a0881ef080e441e276fe339fa082ebc9&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
     'ТП-1167': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ae95992a1a2549180f311089a9a6b1cb6bfaee961300e3cdeb73e4ea22266580d&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
-    'ТП-1341': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aef2417ce9bd3b5bc48d1a299a16f83eeb275c34d0751c2f3fa8a495bb953ce79&amp;width=400&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
+    'ТП-1341': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aef2417ce9bd3b5bc48d1a299a16f83eeb275c34d0751c2f3fa8a495bb953ce79&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
 
     'РП-3': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab7970f9ff1d31e3d1510ba8fbeb405c047f789ab298e2551e2924d2f7a5c413f&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'РП-38': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A7915a2d8b1966b78e014a24ffc7a6354641f29423bd0f7a39baeb2c41fb39512&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
@@ -71,6 +71,7 @@ location = {
     'ПС-110 Дятловичи': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A40e53d017ea283d8c7a462c255aded647d868323a8c0f48952ae7f0fe0be5da8&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Коммунар': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A95f66a6b98ca921f98a4f518db63b117812eaa572d8712135f84ad45819f087c&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 КПД': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A33bcf9fb9d5b31d0fc47924d63eab48698f829c82c1409a074f31a29806ce56b&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
+    'ПС-110': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A14a58a04ea69fd0d5cccad4af77e8687852e79e30b913788cb831156492edc5f&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Новобелица': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac9412f63ab68097243ce8e7362481e3c49ff0b80650241be39da3f502b71d266&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Радиоаппаратура': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aa6999e58170416fd2414cb7c83194109f9588f7d8d1c70275bac2e95958fadd0&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Светиловичи': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9c2141f786cdbd5fbad96319da0d6a0959904283abaa36c181923a7e75d63819&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',

@@ -3,15 +3,6 @@
 {% load utils %}
 {% block title %} {{ log.job_type }} {% endblock %}
 {% block body %}
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
-
-    <!-- header-start -->
-
-    <!-- header-end -->
-
-    <!-- bradcam_area  -->
 
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
@@ -24,11 +15,9 @@
             </div>
         </div>
     </div>
-    <!--/ bradcam_area  -->
 
     <div  class="job_details_area">
-
-            <div  class="container">
+        <div  class="container">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="job_details_header">
@@ -69,7 +58,7 @@
                             <p>{{ log.record }}</p>
                             <p></p>
                         </div>
-                        <div class="single_wrap" >
+                        <div class="single_wrap" id="img_update">
                             <div class="popup-gallery">
                                 <div class="section-top-border">
                                     <div class="row gallery-item">
@@ -80,7 +69,7 @@
                                                     <div class="single-gallery-image" style="background: url(/static/downloadimages/{{ log_id }}/{{ img }})"></div>
                                                 </a>
                                                 {% if perms.inspection.change_inspection_log %}
-                                                    <a href="{% url 'inspection:delete_img' log.id img %}">Удалить</a>
+                                                    <a  onclick="del_img(this);" data-url="{% url 'inspection:delete_img' log.id img %}" class="del_butt" href="javascript: void(0)">Удалить</a>
                                                 {% endif %}
                                             {% endif %}
                                         </div>
@@ -106,12 +95,11 @@
                                                     </p>
                                                   </video>
                                                 {% if perms.inspection.change_inspection_log %}
-                                                    <a href="{% url 'inspection:delete_img' log.id img %}">Удалить</a>
+                                                    <a onclick="del_img(this);" data-url="{% url 'inspection:delete_img' log.id img %}" class="del_butt" href="javascript: void(0)">Удалить</a>
                                                 {% endif %}
                                             {% endif %}
                                         {% endfor %}
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>
@@ -161,26 +149,51 @@
     </div>
   </div>
 </div>
-{% endblock %}
-<script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
+
+
+<script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+<!--<script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>-->
 <script>
-        $(document).ready(function() {
-            $('.popup-gallery').magnificPopup({
-                delegate: '.del-img',
-                type: 'image',
-                tLoading: 'Loading image #%curr%...',
-                mainClass: 'mfp-img-mobile',
-                gallery: {
-                    enabled: true,
-                    navigateByImgClick: true,
-                    preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-                },
-                image: {
-                    tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-                    titleSrc: function(item) {
-                        return item.el.attr('title');
-                    }
+    $(document).ready(function() {
+        $('.popup-gallery').magnificPopup({
+            delegate: '.del-img',
+            type: 'image',
+            tLoading: 'Loading image #%curr%...',
+            mainClass: 'mfp-img-mobile',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+            },
+            image: {
+                tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                titleSrc: function(item) {
+                    return item.el.attr('title');
                 }
-            });
+            }
         });
+    });
 </script>
+
+<!--Удаление изображений без перезагрузки страницы-->
+<script>
+     function del_img(i) {
+        console.log(1233);
+        event.preventDefault();
+        var url_img = $(i).attr("data-url");
+        $.ajax({
+            type: "post",
+            url: url_img,
+            cache: false,
+            data : {
+                'csrfmiddlewaretoken': '{{csrf_token}}',
+            },
+            success: function () {
+                $("#img_update").load(" #img_update");
+
+            },
+        });
+    };
+</script>
+
+{% endblock %}
