@@ -176,7 +176,7 @@ def log_details(request, log_id: int):
 
 def objects_location(request):
     content = {"objects_location": yandex_map.location}
-    return render(request, 'inspection/objects_location.html', content if request.user.has_perm('inspection:view_inspection_log') else {})
+    return render(request, 'inspection/objects_location.html', content if request.user.has_perm('inspection.view_inspection_log') else {})
 
 
 def update_log(request, log_id: int):
