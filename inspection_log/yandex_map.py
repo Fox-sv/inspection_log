@@ -2,10 +2,12 @@ location = {
 
     'ТП-76': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8109250636aaef4296f6383fe07e983722c446e3fa1a42d7b377cb6fed43862f&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ТП-128': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A269d404558463b2794bd892ae72971a8d618bb5b3a34a0b6407f92f91a869ac4&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
+    'ТП-135': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Adf6e476f21e3a93768525c5c68ba9d1e3f364eee4a11fae59cbbb6f25f19a052&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ТП-140': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A54b7cc255c7a2d9f079abf8cac004c8463a8a9cac6bb91fa47fcd6941c3f2079&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ТП-144': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aed9182e01be51a107745fdd8f5c23e1eb9ea45b73f2282afbf574eaac6cb9aaa&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ТП-145': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9d5f3ecab3e5a8cae3085a5c1f635b7b783901ec5beb89015d1f9ef0a87e874f&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ТП-167': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3600ab8c7ed2073f3049cc0b0166e73eded648ed740e794c3484b4067843b92e&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
+    'ТП-175': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A278c2637ee3634bb757be707336945a893ba01c3ecb9943ba51eeec14a0d0f53&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ТП-191': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A544f8c1f8b522514b003cecd856bd16c0018ae5a8bed5dcd49c23adf53904725&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ТП-202': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3395170fe5ca4c044c2c3f3c9af289271cfa22604a8f9099683ecc1e756125fd&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ТП-215': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aceb8736d49c46ec84211eaea2b3a135b4978b2b2eb880517410b999783ac0b5c&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
@@ -57,6 +59,9 @@ location = {
     'РП-38': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A7915a2d8b1966b78e014a24ffc7a6354641f29423bd0f7a39baeb2c41fb39512&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'РП-45': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0e932f4a79a777cf27f61679c43d18ba68923eb222048244aedce7f3c07cd247&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'РП-78': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8f0c96a86ce7ac6173c81369274272ca839b6951c065b63aa8af6b34d5213094&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
+    'РП-82': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Af79bbb66ccd24db84868a9f802b1cf1ac68c72aed2a6919d78473af00528a7b1&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
+    'РП-83': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5085330221f50542eb2e6b7c3f701ef9c0b9230e9e36f8d88df785409f76b743&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
+    'РП-89': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0b802d71a9df60eb0d736e63d00c0141801dcec779ca38c087ea9804c11f4308&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
 
     'ПС-35 Ерёмино': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9d9a47aadd7cefcd3c9295cf4c8fd81a4d5b8cc638845a21da65a85ff259686a&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-35 Коминтерн': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ad07b6f9a98c999f932e838dda82fdf0461700adaa9692ef33151345280283b34&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
