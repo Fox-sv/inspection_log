@@ -63,6 +63,7 @@ location = {
     'РП-83': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5085330221f50542eb2e6b7c3f701ef9c0b9230e9e36f8d88df785409f76b743&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'РП-89': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0b802d71a9df60eb0d736e63d00c0141801dcec779ca38c087ea9804c11f4308&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
 
+    'ПС-35 Боец': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A897d9ca17ffd85435801e20106f04d4b4d703655c0a59ed82c51102bf3c12f3b&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-35 Ерёмино': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9d9a47aadd7cefcd3c9295cf4c8fd81a4d5b8cc638845a21da65a85ff259686a&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-35 Коминтерн': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ad07b6f9a98c999f932e838dda82fdf0461700adaa9692ef33151345280283b34&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-35 Михайловская': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3ca8b3afb8f2e746d5bd67704cb67e765d4f965aab296ad0a15a08c67c61fd7d&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
@@ -85,6 +86,7 @@ location = {
     'ПС-110 Стеклозавод': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3869450e51c9f3174bd26c81c4345cb33a628a070abb84720878e1b711213fa4&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Тереховка': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9ce47b7dcf9a46d4d5b136d6e65ea234b24b1e97ebc14cac9f187e19a35681fa&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Фестивальная': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A6613aaa52e3184fb32d04c6b07771408ef11519f47cedaa360f2736b65c3befb&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
+    'ПС-110 Южная-2': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aa4d63bd6d675664ef9997c60286d7da6068d3201f3352033789d3cd418638936&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
 
     'ПС-220 Центролит': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Acf6b00d79ead3a51ddcad5dfbc7181c6fbb7f6a9d0630d1b72cfad47e639586c&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
 
