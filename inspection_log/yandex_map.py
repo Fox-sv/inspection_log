@@ -74,6 +74,7 @@ location = {
     'ПС-35 Коминтерн': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ad07b6f9a98c999f932e838dda82fdf0461700adaa9692ef33151345280283b34&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-35 Михайловская': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3ca8b3afb8f2e746d5bd67704cb67e765d4f965aab296ad0a15a08c67c61fd7d&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
     'ПС-35 Неглюбка': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ada53d3c8ff66d3bd42f593aa1535e9153e4836d25cf34430d34e4d5084743a9e&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
+    'ПС-35 Присно': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A08c44b71e5db17cf21f544da9ffe288e963be6ed1bcf7fca8d1724503f6d832d&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-35 Студёная Гута': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A4dd23a8bd070888c94c21c14f8addb35e48e90c411a3613bfefe54f861846aef&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-35 Хальч': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8b41ace82ff7dcd15d4113841cad3f78ff6df214127c42d8821d59966a68d3ba&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
 
