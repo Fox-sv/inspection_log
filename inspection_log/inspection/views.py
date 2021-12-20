@@ -44,7 +44,7 @@ def ignore_case(name):
                 substation_name += i.title()
                 if len(full_name[1::]) >= 2 and i != full_name[-1]:
                     substation_name += ' '
-        elif 'тп' in name.lower():
+        elif 'тп' or 'рп' in name.lower():
             substation_name = name.upper()
         else:
             substation_name = name

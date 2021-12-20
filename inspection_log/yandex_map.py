@@ -1,6 +1,7 @@
 
 location = {
 
+    'КТПБ-1': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac8f3e1d8db3d066ce0a6baf6b33dfc9c416dbc5ffd2f91ea95f5dfbad7bb8520&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ТП-76': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8109250636aaef4296f6383fe07e983722c446e3fa1a42d7b377cb6fed43862f&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ТП-128': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A269d404558463b2794bd892ae72971a8d618bb5b3a34a0b6407f92f91a869ac4&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ТП-135': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Adf6e476f21e3a93768525c5c68ba9d1e3f364eee4a11fae59cbbb6f25f19a052&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
@@ -68,6 +69,7 @@ location = {
     'ТП-1341': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aef2417ce9bd3b5bc48d1a299a16f83eeb275c34d0751c2f3fa8a495bb953ce79&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
 
     'РП-3': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab7970f9ff1d31e3d1510ba8fbeb405c047f789ab298e2551e2924d2f7a5c413f&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
+    'РП-4': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Af92fb3a6e623706dbbc324274b3fbb2285c560fd34517e79c08a53d11e0bfd84&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'РП-38': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A7915a2d8b1966b78e014a24ffc7a6354641f29423bd0f7a39baeb2c41fb39512&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'РП-43': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac90dfc0f36bcb44174cfd837a4e56ea8f74145664c3c68823f2dc08dd1a21655&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'РП-45': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0e932f4a79a777cf27f61679c43d18ba68923eb222048244aedce7f3c07cd247&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
@@ -75,6 +77,7 @@ location = {
     'РП-82': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Af79bbb66ccd24db84868a9f802b1cf1ac68c72aed2a6919d78473af00528a7b1&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'РП-83': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5085330221f50542eb2e6b7c3f701ef9c0b9230e9e36f8d88df785409f76b743&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'РП-84': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aff8aa3be12949c7bd65565b2364f870861d4b88cf9b53278515da73e1ced791e&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
+    'РП-85': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A7db92acee030d845a374d310de7cb0b1416078dec683acb9588c69236bb42210&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'РП-89': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0b802d71a9df60eb0d736e63d00c0141801dcec779ca38c087ea9804c11f4308&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
 
     'ПС-35 Боец': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A897d9ca17ffd85435801e20106f04d4b4d703655c0a59ed82c51102bf3c12f3b&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
@@ -92,10 +95,12 @@ location = {
     'ПС-110 Гомелькабель': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ae71c92e17c28916b30204d5068d855943ecf727ea232449f840c61d06f47998d&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Дятловичи': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A40e53d017ea283d8c7a462c255aded647d868323a8c0f48952ae7f0fe0be5da8&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Залесье': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A23d64c1a8787623839ef3bf3bf71be58564046233900845d75a7c11b3df7a9c9&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
+    'ПС-110 Западная': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Acc22447f64bb932f2df474b537bf914ca118ed6a9b95393a47e1a9fb77f1cc4c&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Коммунар': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A95f66a6b98ca921f98a4f518db63b117812eaa572d8712135f84ad45819f087c&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 КПД': "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A33bcf9fb9d5b31d0fc47924d63eab48698f829c82c1409a074f31a29806ce56b&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true",
     'ПС-110 Кравцовка': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A14a58a04ea69fd0d5cccad4af77e8687852e79e30b913788cb831156492edc5f&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Новобелица': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac9412f63ab68097243ce8e7362481e3c49ff0b80650241be39da3f502b71d266&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
+    'ПС-110 Очистные Сооружения': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A95892a56163ff42807cefe2f81918b6c13f0e5f062b53306b77e278102511a6e&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Радиоаппаратура': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aa6999e58170416fd2414cb7c83194109f9588f7d8d1c70275bac2e95958fadd0&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Рудня Маримонова': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab36eefb1b9a51e851d8411fb0f86f27bdea7c3cae78009c79e577607d832d23a&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
     'ПС-110 Светиловичи': 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9c2141f786cdbd5fbad96319da0d6a0959904283abaa36c181923a7e75d63819&amp;width=auto&amp;height=400&amp;lang=ru_RU&amp;scroll=true',
