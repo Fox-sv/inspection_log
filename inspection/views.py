@@ -12,15 +12,17 @@ bot = telebot.TeleBot(os.getenv('api_token'))
 chatId = os.getenv('chatId_my')
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-
+# https://yandex.ru/maps/?pt=30.335429,59.944869&z=18&l=map
 def send_message_tg(type_message, name, job_type, substation):
-    '''
+    """
     Отправка уведомления в телеграмм
-    '''
-    time_now = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
-    message = f'{name} {type_message}.\n{job_type}\n{substation}\n{time_now.strftime("%d.%m.%Y, %H:%M:%S")}'
-    bot.send_message(chatId, text=message)
-
+    """
+    try:
+        time_now = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
+        message = f'{name} {type_message}.\n{job_type}\n{substation}\n{time_now.strftime("%d.%m.%Y, %H:%M:%S")}'
+        bot.send_message(chatId, text=message)
+    except:
+        pass
 
 def change_imagesize(name, img_path):
     '''
@@ -79,9 +81,9 @@ def inspection_log(request):
             date_time_last = clean_data['date_time_last']
             developer = clean_data['developer']
             sort_list = clean_data['sort_list']
-            if date_time_start == None:                                         # если дата не заполнена, автоматически вносится
+            if date_time_start is None:                                         # если дата не заполнена, автоматически вносится
                 date_time_start = datetime.date(2010, 1, 1)
-            if date_time_last == None:
+            if date_time_last is None:
                 date_time_last = datetime.date(2050, 1, 1)
             if developer != '0':
                 find_user_id = User.objects.filter(username=developer)[0].id    # получение id пользователя по логину
